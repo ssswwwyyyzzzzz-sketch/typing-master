@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,104 +15,45 @@ body {
     font-family: Arial, sans-serif;
     background: #101827;
     color: white;
-    padding: 15px;
+    text-align: center;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
+    padding: 20px;
 }
 
 h1 {
-    text-align: center;
     color: #38bdf8;
-}
-
-.card {
-    background: #1e293b;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 15px;
+    font-size: 35px;
 }
 
 .settings {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
-    margin-bottom: 15px;
+    margin: 20px 0;
 }
 
-.settings div {
-    flex: 1;
-    min-width: 140px;
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-select {
-    width: 100%;
+select, button {
     padding: 12px;
     border-radius: 8px;
     border: none;
-    background: #0f172a;
-    color: white;
     font-size: 16px;
 }
 
-.sentence {
-    font-size: 20px;
-    line-height: 1.8;
-    background: #0f172a;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    overflow-wrap: anywhere;
-}
-
-.correct {
-    color: #22c55e;
-}
-
-.wrong {
-    color: #ef4444;
-    background: #451a1a;
-}
-
-.current {
-    background: #38bdf8;
-    color: #000;
-    border-radius: 3px;
-}
-
-textarea {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    margin-bottom: 15px;
-    resize: vertical;
-    min-height: 100px;
-    background: white;
-    color: black;
-    line-height: 1.6;
+select {
+    background: #243247;
+    color: white;
 }
 
 button {
-    padding: 12px 18px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
+    background: #38bdf8;
+    color: #101827;
     font-weight: bold;
     cursor: pointer;
-    background: #38bdf8;
-    color: #000;
-    margin: 5px;
 }
 
 button:hover {
@@ -121,99 +62,133 @@ button:hover {
 
 .stats {
     display: flex;
+    justify-content: center;
+    gap: 15px;
     flex-wrap: wrap;
-    gap: 10px;
+    margin: 20px 0;
 }
 
 .stat {
-    flex: 1;
-    min-width: 100px;
-    text-align: center;
-    background: #0f172a;
-    padding: 15px;
+    background: #243247;
+    padding: 15px 25px;
     border-radius: 10px;
+    min-width: 100px;
 }
 
-.stat h2 {
+.stat h3 {
+    margin: 0;
     color: #38bdf8;
-    margin: 5px;
+    font-size: 25px;
+}
+
+.stat p {
+    margin: 5px 0 0;
+}
+
+#textDisplay {
+    background: #243247;
+    padding: 25px;
+    border-radius: 12px;
+    font-size: 22px;
+    line-height: 1.8;
+    text-align: left;
+    margin: 20px 0;
+    min-height: 150px;
+    word-wrap: break-word;
+}
+
+.correct {
+    color: #22c55e;
+}
+
+.incorrect {
+    color: #ef4444;
+    background: #7f1d1d;
+}
+
+.current {
+    background: #38bdf8;
+    color: #101827;
+    border-radius: 3px;
+}
+
+#typingInput {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    font-size: 20px;
+    background: #1e293b;
+    color: white;
+    border: 2px solid #38bdf8;
+    border-radius: 10px;
+    outline: none;
+    resize: none;
+}
+
+#typingInput:disabled {
+    opacity: 0.5;
 }
 
 .keyboard {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-top: 20px;
-    overflow-x: auto;
+    margin-top: 25px;
 }
 
-.key-row {
+.keyboard-row {
     display: flex;
     justify-content: center;
-    gap: 4px;
-    min-width: 500px;
+    gap: 5px;
+    margin: 6px 0;
+    flex-wrap: wrap;
 }
 
 .key {
     background: #334155;
-    border: 1px solid #64748b;
+    padding: 10px;
+    min-width: 35px;
     border-radius: 5px;
-    padding: 10px 5px;
-    min-width: 30px;
-    text-align: center;
-    font-size: 13px;
-    flex: 1;
-}
-
-.key.active {
-    background: #facc15;
-    color: #000;
-    border-color: white;
-    transform: scale(1.08);
-}
-
-.key.pressed {
-    background: #22c55e;
-    color: #000;
-}
-
-.key.wrong-key {
-    background: #ef4444;
     color: white;
 }
 
-.space {
-    flex: 5;
+.key.active {
+    background: #38bdf8;
+    color: black;
+    transform: scale(1.1);
 }
 
-#result {
+.space-key {
+    width: 250px;
+}
+
+.result {
     display: none;
-    text-align: center;
+    background: #243247;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
 }
 
-#typingArea {
-    display: none;
+.result h2 {
+    color: #38bdf8;
 }
 
-#home {
-    text-align: center;
+.footer {
+    margin-top: 30px;
+    color: #94a3b8;
 }
 
-@media(max-width: 600px) {
-    body {
-        padding: 8px;
+@media(max-width:600px) {
+    h1 {
+        font-size: 28px;
     }
 
-    .card {
+    #textDisplay {
+        font-size: 18px;
         padding: 15px;
     }
 
-    .sentence {
-        font-size: 18px;
-    }
-
-    button {
-        width: auto;
+    .stat {
+        padding: 10px;
+        min-width: 75px;
     }
 }
 </style>
@@ -224,565 +199,514 @@ button:hover {
 <div class="container">
 
 <h1>⌨️ Typing Master</h1>
-
-<div class="card" id="home">
-
-<h2>Typing Practice</h2>
+<p>Improve your typing speed and accuracy</p>
 
 <div class="settings">
 
-<div>
-<label>⏱️ अपना टाइम चुनें</label>
-<select id="customTime">
-<option value="60">1 मिनट</option>
-<option value="120">2 मिनट</option>
-<option value="300">5 मिनट</option>
-<option value="600">10 मिनट</option>
-<option value="900">15 मिनट</option>
-<option value="1800">30 मिनट</option>
+<select id="timeSelect">
+<option value="60">1 Minute</option>
+<option value="120">2 Minutes</option>
+<option value="300">5 Minutes</option>
+<option value="600">10 Minutes</option>
+<option value="900">15 Minutes</option>
+<option value="1800">30 Minutes</option>
 </select>
-</div>
 
-<div>
-<label>📝 टेक्स्ट की लंबाई</label>
-<select id="textLength">
-<option value="short">छोटा</option>
-<option value="medium">मध्यम</option>
-<option value="long" selected>लंबा</option>
+<select id="lengthSelect">
+<option value="short">Short Text</option>
+<option value="medium" selected>Medium Text</option>
+<option value="long">Long Text</option>
 </select>
-</div>
 
-<div>
-<label>🔠 टेक्स्ट साइज</label>
-<select id="fontSize">
-<option value="16">छोटा</option>
-<option value="20" selected>सामान्य</option>
-<option value="26">बड़ा</option>
+<select id="modeSelect">
+<option value="small">Small Letters</option>
+<option value="capital">Capital Letters</option>
+<option value="mixed">Mixed Letters</option>
+<option value="punctuation">Punctuation</option>
+<option value="numbers">Numbers</option>
 </select>
-</div>
+
+<select id="fontSelect">
+<option value="18">Small Text</option>
+<option value="22" selected>Normal Text</option>
+<option value="28">Large Text</option>
+</select>
 
 </div>
-
-<p>Level चुनें:</p>
-
-<button onclick="startTest('beginner')">Beginner</button>
-<button onclick="startTest('medium')">Medium</button>
-<button onclick="startTest('advanced')">Advanced</button>
-
-</div>
-
-<div class="card" id="typingArea">
 
 <div class="stats">
 
 <div class="stat">
+<h3 id="timer">60</h3>
 <p>Time</p>
-<h2 id="time">60</h2>
 </div>
 
 <div class="stat">
-<p>Speed</p>
-<h2 id="wpm">0</h2>
+<h3 id="wpm">0</h3>
+<p>WPM</p>
 </div>
 
 <div class="stat">
+<h3 id="accuracy">100%</h3>
 <p>Accuracy</p>
-<h2 id="accuracy">100%</h2>
+</div>
+
+<div class="stat">
+<h3 id="errors">0</h3>
+<p>Errors</p>
 </div>
 
 </div>
 
-<h3>इस टेक्स्ट को टाइप करें:</h3>
+<div id="textDisplay">
+Select settings and click Start
+</div>
 
-<div class="sentence" id="sentence"></div>
+<textarea id="typingInput"
+placeholder="Start typing here..."
+disabled></textarea>
 
-<textarea
-id="typingInput"
-placeholder="यहाँ टाइप करें..."
-autocomplete="off"
-autocorrect="off"
-autocapitalize="off"
-spellcheck="false"
-></textarea>
+<br><br>
 
-<h3>⌨️ Keyboard</h3>
+<button onclick="startTest()">▶ Start</button>
+<button onclick="restartTest()">↻ Restart</button>
 
-<p>अगली Key पीले रंग में दिखाई देगी।</p>
+<div class="result" id="resultBox">
 
-<div class="keyboard" id="keyboard"></div>
+<h2>🎉 Test Completed!</h2>
 
-<button onclick="restartTest()">🔄 Restart</button>
-<button onclick="goHome()">🏠 Home</button>
+<h3>Typing Speed: <span id="finalWpm">0</span> WPM</h3>
+<h3>Accuracy: <span id="finalAccuracy">0%</span></h3>
+<h3>Total Errors: <span id="finalErrors">0</span></h3>
+
+<button onclick="startTest()">Try Again</button>
 
 </div>
 
-<div class="card" id="result">
+<div class="keyboard">
 
-<h2>🎉 Test Complete!</h2>
+<h2>Keyboard</h2>
 
-<h3>Typing Speed: <span id="finalWpm"></span> WPM</h3>
+<div class="keyboard-row">
+<div class="key">Q</div>
+<div class="key">W</div>
+<div class="key">E</div>
+<div class="key">R</div>
+<div class="key">T</div>
+<div class="key">Y</div>
+<div class="key">U</div>
+<div class="key">I</div>
+<div class="key">O</div>
+<div class="key">P</div>
+</div>
 
-<h3>Accuracy: <span id="finalAccuracy"></span></h3>
+<div class="keyboard-row">
+<div class="key">A</div>
+<div class="key">S</div>
+<div class="key">D</div>
+<div class="key">F</div>
+<div class="key">G</div>
+<div class="key">H</div>
+<div class="key">J</div>
+<div class="key">K</div>
+<div class="key">L</div>
+</div>
 
-<h3>Correct Characters: <span id="correctChars"></span></h3>
+<div class="keyboard-row">
+<div class="key">Z</div>
+<div class="key">X</div>
+<div class="key">C</div>
+<div class="key">V</div>
+<div class="key">B</div>
+<div class="key">N</div>
+<div class="key">M</div>
+</div>
 
-<h3>Wrong Characters: <span id="wrongChars"></span></h3>
-
-<button onclick="goHome()">Home</button>
-
-<button onclick="restartTest()">Try Again</button>
+<div class="keyboard-row">
+<div class="key space-key">SPACE</div>
+</div>
 
 </div>
+
+<p class="footer">Typing Master - Practice Every Day</p>
 
 </div>
 
 <script>
 
-const sentences = {
-
-beginner: [
-
-"The quick brown fox jumps over the lazy dog. I am learning typing every day. Practice makes a person better. Typing is an important computer skill. I can improve my typing speed.",
-
-"Learning to type is a useful skill. I practice every day to become better. I want to improve my speed and accuracy. Good practice helps me learn faster.",
-
-"I use my computer to learn new things. Typing is easy when I practice regularly. I will continue learning and improving my skills every day.",
-
-"Every day is a new opportunity to learn. I can work hard and improve myself. Practice helps me become more confident and successful."
-
-],
-
-medium: [
-
-"Learning new skills requires patience and practice. Typing accurately is more important than typing fast. Every day I am improving my computer skills. Good typing habits help us work efficiently.",
-
-"Technology has changed our daily lives. Computers help us complete many important tasks. Learning computer skills can create better opportunities. Regular practice makes our work easier and faster.",
-
-"I am learning English and computer skills. I want to become a good accountant. Excel is an important tool for office work. I practice typing and formulas every day.",
-
-"Success comes through patience and hard work. We should never stop learning new things. Improving our skills helps us achieve our goals. Every small step matters."
-
-],
-
-advanced: [
-
-"Technology has transformed the way people communicate and work. Accuracy and consistency are essential for professional typing. Developing computer skills creates new opportunities.",
-
-"Modern businesses depend on accurate information and efficient communication. Computer knowledge is important for office professionals. Regular practice improves speed, accuracy, and confidence.",
-
-"Professional typing requires concentration and discipline. Accuracy should always be maintained while working with important documents. Learning new technology helps people become more efficient.",
-
-"Financial independence requires knowledge, discipline, and hard work. Learning accounting and computer skills can help build a successful career. Every day is an opportunity to improve."
-]
-
-};
-
-let currentSentence = "";
-let timer;
-let timeLeft = 60;
-let totalTime = 60;
-let started = false;
-
-const keyboardRows = [
-
-["1","2","3","4","5","6","7","8","9","0"],
-
-["q","w","e","r","t","y","u","i","o","p"],
-
-["a","s","d","f","g","h","j","k","l"],
-
-["z","x","c","v","b","n","m"],
-
-["SPACE","BACKSPACE","ENTER"]
-
+const smallWords = [
+"hello world",
+"i am learning typing",
+"practice makes perfect",
+"typing is a useful skill",
+"i want to improve my speed",
+"i can learn anything",
+"today is a good day",
+"keep practicing every day",
+"learning is important",
+"i will become better",
+"work hard and stay focused",
+"typing helps me improve",
+"i practice every day",
+"i can do it",
+"never stop learning",
+"this is my practice",
+"my typing speed is growing",
+"i am improving every day",
+"learn new skills",
+"focus on your work"
 ];
 
-function createKeyboard() {
+const capitalWords = [
+"HELLO WORLD",
+"I AM LEARNING TYPING",
+"PRACTICE MAKES PERFECT",
+"TYPING IS A USEFUL SKILL",
+"I WANT TO IMPROVE MY SPEED",
+"I CAN LEARN ANYTHING",
+"TODAY IS A GOOD DAY",
+"KEEP PRACTICING EVERY DAY",
+"LEARNING IS IMPORTANT",
+"I WILL BECOME BETTER",
+"WORK HARD AND STAY FOCUSED",
+"TYPING HELPS ME IMPROVE",
+"I PRACTICE EVERY DAY",
+"I CAN DO IT",
+"NEVER STOP LEARNING",
+"THIS IS MY PRACTICE",
+"MY TYPING SPEED IS GROWING",
+"I AM IMPROVING EVERY DAY",
+"LEARN NEW SKILLS",
+"FOCUS ON YOUR WORK"
+];
 
-const keyboard = document.getElementById("keyboard");
+const mixedWords = [
+"Hello World",
+"I Am Learning Typing",
+"Practice Makes Perfect",
+"Typing Is A Useful Skill",
+"I Want To Improve My Speed",
+"I Can Learn Anything",
+"Today Is A Good Day",
+"Keep Practicing Every Day",
+"Learning Is Important",
+"I Will Become Better",
+"Work Hard And Stay Focused",
+"Typing Helps Me Improve",
+"I Practice Every Day",
+"I Can Do It",
+"Never Stop Learning",
+"This Is My Practice",
+"My Typing Speed Is Growing",
+"I Am Improving Every Day",
+"Learn New Skills",
+"Focus On Your Work"
+];
 
-keyboard.innerHTML = "";
+const punctuationWords = [
+"Hello, how are you?",
+"I am learning typing.",
+"Practice makes perfect!",
+"Are you ready?",
+"Yes, I am ready.",
+"Good morning!",
+"How is your day?",
+"Keep learning, keep growing.",
+"Work hard; stay focused.",
+"Typing is fun!",
+"Where are you going?",
+"I like learning new things.",
+"Let's practice today.",
+"Wow! That is amazing.",
+"Time is valuable.",
+"Do your best, always.",
+"Learn, practice, improve.",
+"Are you happy today?",
+"Never give up!",
+"Good luck!"
+];
 
-keyboardRows.forEach(row => {
+const numberWords = [
+"1234567890",
+"9876543210",
+"12345 67890",
+"2026 2027 2028",
+"100 200 300 400",
+"5000 6000 7000",
+"123 456 789",
+"987 654 321",
+"111 222 333",
+"444 555 666",
+"789 456 123",
+"2025 2026 2027",
+"10000 20000 30000",
+"55555 66666 77777",
+"98765 43210",
+"123456 789012",
+"2026 11 22",
+"100 500 1000 5000",
+"1234 5678 9012",
+"999 888 777 666"
+];
 
-const rowDiv = document.createElement("div");
+let targetText = "";
+let timerInterval;
+let timeLeft = 60;
+let started = false;
+let startTime = 0;
 
-rowDiv.className = "key-row";
+const typingInput = document.getElementById("typingInput");
+const textDisplay = document.getElementById("textDisplay");
 
-row.forEach(key => {
+function generateText() {
 
-const keyDiv = document.createElement("div");
+    let mode = document.getElementById("modeSelect").value;
+    let length = document.getElementById("lengthSelect").value;
 
-keyDiv.className = "key";
+    let source;
 
-keyDiv.textContent = key;
+    if(mode === "small") {
+        source = smallWords;
+    }
+    else if(mode === "capital") {
+        source = capitalWords;
+    }
+    else if(mode === "mixed") {
+        source = mixedWords;
+    }
+    else if(mode === "punctuation") {
+        source = punctuationWords;
+    }
+    else {
+        source = numberWords;
+    }
 
-if(key === "SPACE") {
+    let count = 5;
 
-keyDiv.classList.add("space");
+    if(length === "short") {
+        count = 3;
+    }
+
+    if(length === "medium") {
+        count = 8;
+    }
+
+    if(length === "long") {
+        count = 15;
+    }
+
+    let result = [];
+
+    for(let i = 0; i < count; i++) {
+        result.push(source[Math.floor(Math.random() * source.length)]);
+    }
+
+    targetText = result.join(" ");
+
+    textDisplay.innerHTML = "";
+
+    targetText.split("").forEach((char, index) => {
+
+        let span = document.createElement("span");
+        span.innerText = char;
+        span.id = "char" + index;
+
+        textDisplay.appendChild(span);
+
+    });
+
+    updateHighlight();
+}
+
+function startTest() {
+
+    clearInterval(timerInterval);
+
+    timeLeft = parseInt(document.getElementById("timeSelect").value);
+
+    document.getElementById("timer").innerText = timeLeft;
+
+    document.getElementById("resultBox").style.display = "none";
+
+    typingInput.disabled = false;
+    typingInput.value = "";
+    typingInput.focus();
+
+    generateText();
+
+    started = false;
+
+    document.getElementById("wpm").innerText = 0;
+    document.getElementById("accuracy").innerText = "100%";
+    document.getElementById("errors").innerText = 0;
 
 }
 
-keyDiv.id = "key-" + key;
+function restartTest() {
+    startTest();
+}
 
-rowDiv.appendChild(keyDiv);
+typingInput.addEventListener("input", function() {
+
+    if(!started) {
+
+        started = true;
+        startTime = Date.now();
+
+        timerInterval = setInterval(function() {
+
+            timeLeft--;
+
+            document.getElementById("timer").innerText = timeLeft;
+
+            if(timeLeft <= 0) {
+                finishTest();
+            }
+
+        }, 1000);
+
+    }
+
+    let typed = typingInput.value;
+
+    let correct = 0;
+    let errors = 0;
+
+    for(let i = 0; i < typed.length; i++) {
+
+        if(typed[i] === targetText[i]) {
+            correct++;
+        }
+        else {
+            errors++;
+        }
+
+    }
+
+    let accuracy = typed.length > 0
+        ? Math.round((correct / typed.length) * 100)
+        : 100;
+
+    let elapsed = (Date.now() - startTime) / 60000;
+
+    let wpm = elapsed > 0
+        ? Math.round((correct / 5) / elapsed)
+        : 0;
+
+    document.getElementById("wpm").innerText = wpm;
+    document.getElementById("accuracy").innerText = accuracy + "%";
+    document.getElementById("errors").innerText = errors;
+
+    updateHighlight();
+
+    if(typed.length >= targetText.length) {
+        finishTest();
+    }
 
 });
 
-keyboard.appendChild(rowDiv);
+function updateHighlight() {
 
-});
+    let typed = typingInput.value;
 
-}
+    targetText.split("").forEach((char, index) => {
 
-function generateText(level) {
+        let span = document.getElementById("char" + index);
 
-const length = document.getElementById("textLength").value;
+        if(!span) return;
 
-let targetLength;
+        span.className = "";
 
-if(length === "short") {
+        if(index < typed.length) {
 
-targetLength = 200;
+            if(typed[index] === targetText[index]) {
+                span.className = "correct";
+            }
+            else {
+                span.className = "incorrect";
+            }
 
-}
+        }
 
-else if(length === "medium") {
+        if(index === typed.length) {
+            span.className = "current";
+        }
 
-targetLength = 500;
+    });
 
-}
-
-else {
-
-targetLength = 1200;
-
-}
-
-let text = "";
-
-const list = sentences[level];
-
-while(text.length < targetLength) {
-
-const randomSentence = list[Math.floor(Math.random() * list.length)];
-
-text += randomSentence + " ";
-
-}
-
-return text.trim();
-
-}
-
-function startTest(level) {
-
-clearInterval(timer);
-
-currentSentence = generateText(level);
-
-totalTime = Number(document.getElementById("customTime").value);
-
-timeLeft = totalTime;
-
-started = false;
-
-document.getElementById("home").style.display = "none";
-
-document.getElementById("result").style.display = "none";
-
-document.getElementById("typingArea").style.display = "block";
-
-document.getElementById("time").textContent = timeLeft;
-
-document.getElementById("wpm").textContent = "0";
-
-document.getElementById("accuracy").textContent = "100%";
-
-document.getElementById("typingInput").value = "";
-
-document.getElementById("typingInput").disabled = false;
-
-document.getElementById("typingInput").style.fontSize =
-document.getElementById("fontSize").value + "px";
-
-createKeyboard();
-
-showSentence();
-
-document.getElementById("typingInput").focus();
-
-}
-
-function showSentence() {
-
-const input = document.getElementById("typingInput").value;
-
-let html = "";
-
-for(let i = 0; i < currentSentence.length; i++) {
-
-if(i < input.length) {
-
-if(input[i] === currentSentence[i]) {
-
-html += `<span class="correct">${currentSentence[i]}</span>`;
-
-} else {
-
-html += `<span class="wrong">${currentSentence[i]}</span>`;
-
-}
-
-}
-
-else if(i === input.length) {
-
-html += `<span class="current">${currentSentence[i]}</span>`;
-
-}
-
-else {
-
-html += currentSentence[i];
-
-}
-
-}
-
-document.getElementById("sentence").innerHTML = html;
-
-highlightKey();
+    highlightKey();
 
 }
 
 function highlightKey() {
 
-document.querySelectorAll(".key").forEach(key => {
+    document.querySelectorAll(".key").forEach(key => {
+        key.classList.remove("active");
+    });
 
-key.classList.remove("active");
+    let nextChar = targetText[typingInput.value.length];
 
-});
+    if(!nextChar) return;
 
-const input = document.getElementById("typingInput").value;
+    let keyName = nextChar.toUpperCase();
 
-const nextChar = currentSentence[input.length];
+    document.querySelectorAll(".key").forEach(key => {
 
-if(!nextChar) return;
+        if(key.innerText === keyName) {
+            key.classList.add("active");
+        }
 
-let keyName = nextChar.toLowerCase();
+    });
 
-if(nextChar === " ") {
-
-keyName = "SPACE";
-
-}
-
-const key = document.getElementById("key-" + keyName);
-
-if(key) {
-
-key.classList.add("active");
-
-}
-
-}
-
-document.getElementById("typingInput").addEventListener("input", function() {
-
-if(!started) {
-
-started = true;
-
-startTimer();
-
-}
-
-showSentence();
-
-calculateStats();
-
-if(this.value.length >= currentSentence.length) {
-
-finishTest();
-
-}
-
-});
-
-function startTimer() {
-
-timer = setInterval(() => {
-
-timeLeft--;
-
-document.getElementById("time").textContent = timeLeft;
-
-calculateStats();
-
-if(timeLeft <= 0) {
-
-finishTest();
-
-}
-
-}, 1000);
-
-}
-
-function calculateStats() {
-
-const input = document.getElementById("typingInput").value;
-
-let correct = 0;
-
-for(let i = 0; i < input.length; i++) {
-
-if(input[i] === currentSentence[i]) {
-
-correct++;
-
-}
-
-}
-
-const elapsed = totalTime - timeLeft;
-
-const minutes = elapsed / 60;
-
-let wpm = 0;
-
-if(minutes > 0) {
-
-wpm = Math.round((correct / 5) / minutes);
-
-}
-
-let accuracy = 100;
-
-if(input.length > 0) {
-
-accuracy = Math.round((correct / input.length) * 100);
-
-}
-
-document.getElementById("wpm").textContent = wpm;
-
-document.getElementById("accuracy").textContent = accuracy + "%";
+    if(nextChar === " ") {
+        document.querySelector(".space-key").classList.add("active");
+    }
 
 }
 
 function finishTest() {
 
-clearInterval(timer);
+    clearInterval(timerInterval);
 
-document.getElementById("typingInput").disabled = true;
+    typingInput.disabled = true;
 
-const input = document.getElementById("typingInput").value;
+    let typed = typingInput.value;
 
-let correct = 0;
+    let correct = 0;
+    let errors = 0;
 
-let wrong = 0;
+    for(let i = 0; i < typed.length; i++) {
 
-for(let i = 0; i < input.length; i++) {
+        if(typed[i] === targetText[i]) {
+            correct++;
+        }
+        else {
+            errors++;
+        }
 
-if(input[i] === currentSentence[i]) {
+    }
 
-correct++;
+    let accuracy = typed.length > 0
+        ? Math.round((correct / typed.length) * 100)
+        : 0;
 
-} else {
+    let elapsed = Math.max((Date.now() - startTime) / 60000, 0.01);
 
-wrong++;
+    let wpm = Math.round((correct / 5) / elapsed);
 
-}
+    document.getElementById("finalWpm").innerText = wpm;
+    document.getElementById("finalAccuracy").innerText = accuracy + "%";
+    document.getElementById("finalErrors").innerText = errors;
 
-}
-
-const elapsed = totalTime - timeLeft;
-
-let wpm = 0;
-
-if(elapsed > 0) {
-
-wpm = Math.round((correct / 5) / (elapsed / 60));
-
-}
-
-let accuracy = 0;
-
-if(input.length > 0) {
-
-accuracy = Math.round((correct / input.length) * 100);
+    document.getElementById("resultBox").style.display = "block";
 
 }
 
-document.getElementById("typingArea").style.display = "none";
+document.getElementById("fontSelect").addEventListener("change", function() {
 
-document.getElementById("result").style.display = "block";
-
-document.getElementById("finalWpm").textContent = wpm;
-
-document.getElementById("finalAccuracy").textContent = accuracy + "%";
-
-document.getElementById("correctChars").textContent = correct;
-
-document.getElementById("wrongChars").textContent = wrong;
-
-}
-
-function restartTest() {
-
-clearInterval(timer);
-
-document.getElementById("result").style.display = "none";
-
-document.getElementById("typingArea").style.display = "block";
-
-startTest("beginner");
-
-}
-
-function goHome() {
-
-clearInterval(timer);
-
-document.getElementById("result").style.display = "none";
-
-document.getElementById("typingArea").style.display = "none";
-
-document.getElementById("home").style.display = "block";
-
-}
-
-document.addEventListener("keydown", function(event) {
-
-const keyName = event.key.toLowerCase();
-
-let keyId = keyName;
-
-if(event.key === " ") {
-
-keyId = "SPACE";
-
-}
-
-const key = document.getElementById("key-" + keyId);
-
-if(key) {
-
-key.classList.add("pressed");
-
-setTimeout(() => {
-
-key.classList.remove("pressed");
-
-}, 150);
-
-}
+    textDisplay.style.fontSize = this.value + "px";
 
 });
-
-createKeyboard();
 
 </script>
 
