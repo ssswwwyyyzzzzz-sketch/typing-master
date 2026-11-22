@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -8,156 +7,215 @@
 
 <style>
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #101827;
-  color: white;
-  padding: 15px;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #101827;
+    color: white;
+    padding: 15px;
 }
 
 .container {
-  max-width: 900px;
-  margin: auto;
+    max-width: 900px;
+    margin: auto;
 }
 
 h1 {
-  text-align: center;
-  color: #38bdf8;
+    text-align: center;
+    color: #38bdf8;
 }
 
 .card {
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 15px;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.settings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.settings div {
+    flex: 1;
+    min-width: 140px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #0f172a;
+    color: white;
+    font-size: 16px;
 }
 
 .sentence {
-  font-size: 20px;
-  line-height: 1.8;
-  background: #0f172a;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
+    font-size: 20px;
+    line-height: 1.8;
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow-wrap: anywhere;
 }
 
 .correct {
-  color: #22c55e;
+    color: #22c55e;
 }
 
 .wrong {
-  color: #ef4444;
-  background: #451a1a;
+    color: #ef4444;
+    background: #451a1a;
 }
 
 .current {
-  background: #38bdf8;
-  color: #000;
-  border-radius: 3px;
+    background: #38bdf8;
+    color: #000;
+    border-radius: 3px;
 }
 
-input {
-  width: 100%;
-  padding: 15px;
-  font-size: 18px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  margin-bottom: 15px;
+textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-bottom: 15px;
+    resize: vertical;
+    min-height: 100px;
+    background: white;
+    color: black;
+    line-height: 1.6;
 }
 
 button {
-  padding: 12px 18px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  background: #38bdf8;
-  color: #000;
-  margin: 5px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #38bdf8;
+    color: #000;
+    margin: 5px;
+}
+
+button:hover {
+    background: #0ea5e9;
 }
 
 .stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .stat {
-  flex: 1;
-  min-width: 100px;
-  text-align: center;
-  background: #0f172a;
-  padding: 15px;
-  border-radius: 10px;
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 .stat h2 {
-  color: #38bdf8;
-  margin: 5px;
+    color: #38bdf8;
+    margin: 5px;
 }
 
 .keyboard {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: 20px;
-  overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 20px;
+    overflow-x: auto;
 }
 
 .key-row {
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-  min-width: 500px;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    min-width: 500px;
 }
 
 .key {
-  background: #334155;
-  border: 1px solid #64748b;
-  border-radius: 5px;
-  padding: 10px 5px;
-  min-width: 30px;
-  text-align: center;
-  font-size: 13px;
-  flex: 1;
+    background: #334155;
+    border: 1px solid #64748b;
+    border-radius: 5px;
+    padding: 10px 5px;
+    min-width: 30px;
+    text-align: center;
+    font-size: 13px;
+    flex: 1;
 }
 
 .key.active {
-  background: #facc15;
-  color: #000;
-  border-color: white;
-  transform: scale(1.08);
+    background: #facc15;
+    color: #000;
+    border-color: white;
+    transform: scale(1.08);
 }
 
 .key.pressed {
-  background: #22c55e;
-  color: #000;
+    background: #22c55e;
+    color: #000;
 }
 
 .key.wrong-key {
-  background: #ef4444;
-  color: white;
+    background: #ef4444;
+    color: white;
 }
 
 .space {
-  flex: 5;
+    flex: 5;
 }
 
 #result {
-  display: none;
-  text-align: center;
+    display: none;
+    text-align: center;
 }
 
 #typingArea {
-  display: none;
+    display: none;
 }
 
+#home {
+    text-align: center;
+}
+
+@media(max-width: 600px) {
+    body {
+        padding: 8px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .sentence {
+        font-size: 18px;
+    }
+
+    button {
+        width: auto;
+    }
+}
 </style>
 </head>
 
@@ -170,6 +228,40 @@ button {
 <div class="card" id="home">
 
 <h2>Typing Practice</h2>
+
+<div class="settings">
+
+<div>
+<label>⏱️ अपना टाइम चुनें</label>
+<select id="customTime">
+<option value="60">1 मिनट</option>
+<option value="120">2 मिनट</option>
+<option value="300">5 मिनट</option>
+<option value="600">10 मिनट</option>
+<option value="900">15 मिनट</option>
+<option value="1800">30 मिनट</option>
+</select>
+</div>
+
+<div>
+<label>📝 टेक्स्ट की लंबाई</label>
+<select id="textLength">
+<option value="short">छोटा</option>
+<option value="medium">मध्यम</option>
+<option value="long" selected>लंबा</option>
+</select>
+</div>
+
+<div>
+<label>🔠 टेक्स्ट साइज</label>
+<select id="fontSize">
+<option value="16">छोटा</option>
+<option value="20" selected>सामान्य</option>
+<option value="26">बड़ा</option>
+</select>
+</div>
+
+</div>
 
 <p>Level चुनें:</p>
 
@@ -200,18 +292,18 @@ button {
 
 </div>
 
-<h3>इस वाक्य को टाइप करें:</h3>
+<h3>इस टेक्स्ट को टाइप करें:</h3>
 
 <div class="sentence" id="sentence"></div>
 
-<input
+<textarea
 id="typingInput"
 placeholder="यहाँ टाइप करें..."
 autocomplete="off"
 autocorrect="off"
 autocapitalize="off"
 spellcheck="false"
->
+></textarea>
 
 <h3>⌨️ Keyboard</h3>
 
@@ -219,7 +311,8 @@ spellcheck="false"
 
 <div class="keyboard" id="keyboard"></div>
 
-<button onclick="restartTest()">Restart</button>
+<button onclick="restartTest()">🔄 Restart</button>
+<button onclick="goHome()">🏠 Home</button>
 
 </div>
 
@@ -236,6 +329,7 @@ spellcheck="false"
 <h3>Wrong Characters: <span id="wrongChars"></span></h3>
 
 <button onclick="goHome()">Home</button>
+
 <button onclick="restartTest()">Try Again</button>
 
 </div>
@@ -247,24 +341,38 @@ spellcheck="false"
 const sentences = {
 
 beginner: [
-"The quick brown fox jumps over the lazy dog.",
-"I am learning typing every day.",
-"Practice makes a person better.",
-"Typing is an important computer skill.",
-"I can improve my typing speed."
+
+"The quick brown fox jumps over the lazy dog. I am learning typing every day. Practice makes a person better. Typing is an important computer skill. I can improve my typing speed.",
+
+"Learning to type is a useful skill. I practice every day to become better. I want to improve my speed and accuracy. Good practice helps me learn faster.",
+
+"I use my computer to learn new things. Typing is easy when I practice regularly. I will continue learning and improving my skills every day.",
+
+"Every day is a new opportunity to learn. I can work hard and improve myself. Practice helps me become more confident and successful."
+
 ],
 
 medium: [
-"Learning new skills requires patience and practice.",
-"Typing accurately is more important than typing fast.",
-"Every day I am improving my computer skills.",
-"Good typing habits help us work efficiently."
+
+"Learning new skills requires patience and practice. Typing accurately is more important than typing fast. Every day I am improving my computer skills. Good typing habits help us work efficiently.",
+
+"Technology has changed our daily lives. Computers help us complete many important tasks. Learning computer skills can create better opportunities. Regular practice makes our work easier and faster.",
+
+"I am learning English and computer skills. I want to become a good accountant. Excel is an important tool for office work. I practice typing and formulas every day.",
+
+"Success comes through patience and hard work. We should never stop learning new things. Improving our skills helps us achieve our goals. Every small step matters."
+
 ],
 
 advanced: [
-"Technology has transformed the way people communicate and work.",
-"Accuracy and consistency are essential for professional typing.",
-"Developing computer skills creates new opportunities."
+
+"Technology has transformed the way people communicate and work. Accuracy and consistency are essential for professional typing. Developing computer skills creates new opportunities.",
+
+"Modern businesses depend on accurate information and efficient communication. Computer knowledge is important for office professionals. Regular practice improves speed, accuracy, and confidence.",
+
+"Professional typing requires concentration and discipline. Accuracy should always be maintained while working with important documents. Learning new technology helps people become more efficient.",
+
+"Financial independence requires knowledge, discipline, and hard work. Learning accounting and computer skills can help build a successful career. Every day is an opportunity to improve."
 ]
 
 };
@@ -272,14 +380,21 @@ advanced: [
 let currentSentence = "";
 let timer;
 let timeLeft = 60;
+let totalTime = 60;
 let started = false;
 
 const keyboardRows = [
+
 ["1","2","3","4","5","6","7","8","9","0"],
+
 ["q","w","e","r","t","y","u","i","o","p"],
+
 ["a","s","d","f","g","h","j","k","l"],
+
 ["z","x","c","v","b","n","m"],
+
 ["SPACE","BACKSPACE","ENTER"]
+
 ];
 
 function createKeyboard() {
@@ -291,6 +406,7 @@ keyboard.innerHTML = "";
 keyboardRows.forEach(row => {
 
 const rowDiv = document.createElement("div");
+
 rowDiv.className = "key-row";
 
 row.forEach(key => {
@@ -298,10 +414,13 @@ row.forEach(key => {
 const keyDiv = document.createElement("div");
 
 keyDiv.className = "key";
+
 keyDiv.textContent = key;
 
 if(key === "SPACE") {
+
 keyDiv.classList.add("space");
+
 }
 
 keyDiv.id = "key-" + key;
@@ -316,23 +435,79 @@ keyboard.appendChild(rowDiv);
 
 }
 
+function generateText(level) {
+
+const length = document.getElementById("textLength").value;
+
+let targetLength;
+
+if(length === "short") {
+
+targetLength = 200;
+
+}
+
+else if(length === "medium") {
+
+targetLength = 500;
+
+}
+
+else {
+
+targetLength = 1200;
+
+}
+
+let text = "";
+
+const list = sentences[level];
+
+while(text.length < targetLength) {
+
+const randomSentence = list[Math.floor(Math.random() * list.length)];
+
+text += randomSentence + " ";
+
+}
+
+return text.trim();
+
+}
+
 function startTest(level) {
 
-currentSentence =
-sentences[level][Math.floor(Math.random() * sentences[level].length)];
+clearInterval(timer);
 
-document.getElementById("home").style.display = "none";
-document.getElementById("result").style.display = "none";
-document.getElementById("typingArea").style.display = "block";
+currentSentence = generateText(level);
 
-timeLeft = 60;
+totalTime = Number(document.getElementById("customTime").value);
+
+timeLeft = totalTime;
+
 started = false;
 
+document.getElementById("home").style.display = "none";
+
+document.getElementById("result").style.display = "none";
+
+document.getElementById("typingArea").style.display = "block";
+
 document.getElementById("time").textContent = timeLeft;
+
+document.getElementById("wpm").textContent = "0";
+
+document.getElementById("accuracy").textContent = "100%";
+
 document.getElementById("typingInput").value = "";
+
 document.getElementById("typingInput").disabled = false;
 
+document.getElementById("typingInput").style.fontSize =
+document.getElementById("fontSize").value + "px";
+
 createKeyboard();
+
 showSentence();
 
 document.getElementById("typingInput").focus();
@@ -350,16 +525,24 @@ for(let i = 0; i < currentSentence.length; i++) {
 if(i < input.length) {
 
 if(input[i] === currentSentence[i]) {
+
 html += `<span class="correct">${currentSentence[i]}</span>`;
+
 } else {
+
 html += `<span class="wrong">${currentSentence[i]}</span>`;
+
 }
 
-} else if(i === input.length) {
+}
+
+else if(i === input.length) {
 
 html += `<span class="current">${currentSentence[i]}</span>`;
 
-} else {
+}
+
+else {
 
 html += currentSentence[i];
 
@@ -376,7 +559,9 @@ highlightKey();
 function highlightKey() {
 
 document.querySelectorAll(".key").forEach(key => {
+
 key.classList.remove("active");
+
 });
 
 const input = document.getElementById("typingInput").value;
@@ -388,13 +573,17 @@ if(!nextChar) return;
 let keyName = nextChar.toLowerCase();
 
 if(nextChar === " ") {
+
 keyName = "SPACE";
+
 }
 
 const key = document.getElementById("key-" + keyName);
 
 if(key) {
+
 key.classList.add("active");
+
 }
 
 }
@@ -402,15 +591,21 @@ key.classList.add("active");
 document.getElementById("typingInput").addEventListener("input", function() {
 
 if(!started) {
+
 started = true;
+
 startTimer();
+
 }
 
 showSentence();
+
 calculateStats();
 
 if(this.value.length >= currentSentence.length) {
+
 finishTest();
+
 }
 
 });
@@ -426,7 +621,9 @@ document.getElementById("time").textContent = timeLeft;
 calculateStats();
 
 if(timeLeft <= 0) {
+
 finishTest();
+
 }
 
 }, 1000);
@@ -442,26 +639,35 @@ let correct = 0;
 for(let i = 0; i < input.length; i++) {
 
 if(input[i] === currentSentence[i]) {
+
 correct++;
-}
 
 }
 
-const minutes = (60 - timeLeft) / 60;
+}
+
+const elapsed = totalTime - timeLeft;
+
+const minutes = elapsed / 60;
 
 let wpm = 0;
 
 if(minutes > 0) {
+
 wpm = Math.round((correct / 5) / minutes);
+
 }
 
-let accuracy = 0;
+let accuracy = 100;
 
 if(input.length > 0) {
+
 accuracy = Math.round((correct / input.length) * 100);
+
 }
 
 document.getElementById("wpm").textContent = wpm;
+
 document.getElementById("accuracy").textContent = accuracy + "%";
 
 }
@@ -475,38 +681,51 @@ document.getElementById("typingInput").disabled = true;
 const input = document.getElementById("typingInput").value;
 
 let correct = 0;
+
 let wrong = 0;
 
 for(let i = 0; i < input.length; i++) {
 
 if(input[i] === currentSentence[i]) {
+
 correct++;
+
 } else {
+
 wrong++;
-}
 
 }
 
-const elapsed = 60 - timeLeft;
+}
+
+const elapsed = totalTime - timeLeft;
 
 let wpm = 0;
 
 if(elapsed > 0) {
+
 wpm = Math.round((correct / 5) / (elapsed / 60));
+
 }
 
 let accuracy = 0;
 
 if(input.length > 0) {
+
 accuracy = Math.round((correct / input.length) * 100);
+
 }
 
 document.getElementById("typingArea").style.display = "none";
+
 document.getElementById("result").style.display = "block";
 
 document.getElementById("finalWpm").textContent = wpm;
+
 document.getElementById("finalAccuracy").textContent = accuracy + "%";
+
 document.getElementById("correctChars").textContent = correct;
+
 document.getElementById("wrongChars").textContent = wrong;
 
 }
@@ -516,6 +735,7 @@ function restartTest() {
 clearInterval(timer);
 
 document.getElementById("result").style.display = "none";
+
 document.getElementById("typingArea").style.display = "block";
 
 startTest("beginner");
@@ -527,7 +747,9 @@ function goHome() {
 clearInterval(timer);
 
 document.getElementById("result").style.display = "none";
+
 document.getElementById("typingArea").style.display = "none";
+
 document.getElementById("home").style.display = "block";
 
 }
@@ -539,7 +761,9 @@ const keyName = event.key.toLowerCase();
 let keyId = keyName;
 
 if(event.key === " ") {
+
 keyId = "SPACE";
+
 }
 
 const key = document.getElementById("key-" + keyId);
@@ -549,7 +773,9 @@ if(key) {
 key.classList.add("pressed");
 
 setTimeout(() => {
+
 key.classList.remove("pressed");
+
 }, 150);
 
 }
@@ -561,5 +787,4 @@ createKeyboard();
 </script>
 
 </body>
-  </html>
-  
+</html>
