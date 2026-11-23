@@ -4,10 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KeyFlow - Typing Practice</title>
+<title>Typing Master</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
     --bg: #111315;
@@ -18,7 +18,6 @@
     --accent: #f2c94c;
     --green: #65d69a;
     --red: #f07178;
-    --blue: #70b8ff;
     --border: #292e34;
 }
 
@@ -34,62 +33,43 @@ body {
     min-height: 100vh;
 }
 
-button, select, input, textarea {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
 .app {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: auto;
-    padding: 25px 24px 40px;
+    padding: 20px;
 }
-
-/* HEADER */
 
 .header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin-bottom: 35px;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 .logo {
-    font-size: 23px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--accent);
-    letter-spacing: -1px;
 }
 
 .logo span {
     color: white;
 }
 
-.header-right {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
 .icon-btn {
     background: var(--panel);
     border: 1px solid var(--border);
     color: var(--muted);
-    padding: 10px 13px;
+    padding: 10px 14px;
     border-radius: 9px;
 }
-
-/* SETTINGS */
 
 .settings {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 }
 
 .setting-group {
@@ -109,7 +89,7 @@ button {
     padding: 10px 13px;
     border-radius: 8px;
     font-size: 14px;
-    transition: .2s;
+    cursor: pointer;
 }
 
 .option:hover {
@@ -120,15 +100,6 @@ button {
 .option.active {
     color: var(--accent);
     background: #2c2a20;
-}
-
-.option.active .symbol {
-    color: var(--accent);
-}
-
-.symbol {
-    margin-right: 6px;
-    color: #626b75;
 }
 
 select {
@@ -145,27 +116,24 @@ select option {
     color: white;
 }
 
-/* TEST AREA */
-
 .test-area {
-    max-width: 1000px;
+    max-width: 950px;
     margin: auto;
 }
 
 .language {
     text-align: center;
     color: var(--muted);
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     font-family: JetBrains Mono, monospace;
-    font-size: 15px;
 }
 
 .live-stats {
     display: flex;
     justify-content: center;
-    gap: 35px;
-    margin-bottom: 28px;
+    gap: 30px;
     flex-wrap: wrap;
+    margin-bottom: 25px;
 }
 
 .stat {
@@ -175,7 +143,7 @@ select option {
 .stat-label {
     color: var(--muted);
     font-size: 12px;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 
 .stat-value {
@@ -184,27 +152,28 @@ select option {
     color: var(--accent);
 }
 
-#timer {
-    font-size: 29px;
-}
+/* FIXED TYPING DISPLAY */
 
 .typing-display {
+    height: 175px;
+    max-height: 175px;
+    overflow: hidden;
+    background: #151719;
+    border: 1px solid #25292e;
+    border-radius: 12px;
+    padding: 18px;
     font-family: JetBrains Mono, monospace;
-    font-size: clamp(20px, 3vw, 30px);
-    line-height: 1.9;
+    font-size: clamp(18px, 3vw, 26px);
+    line-height: 1.8;
     letter-spacing: 1px;
-    color: #555c64;
-    min-height: 180px;
-    word-spacing: 4px;
-    white-space: pre-wrap;
+    color: #555d65;
     overflow-wrap: anywhere;
-    margin-bottom: 25px;
-    user-select: none;
-}
-
-.char {
+    word-break: break-word;
+    margin-bottom: 20px;
     position: relative;
 }
+
+/* Only a small text window is shown */
 
 .char.correct {
     color: var(--green);
@@ -212,7 +181,7 @@ select option {
 
 .char.incorrect {
     color: var(--red);
-    background: rgba(240, 113, 120, .12);
+    background: rgba(240,113,120,.12);
     border-radius: 3px;
 }
 
@@ -227,17 +196,22 @@ select option {
     }
 }
 
+/* INPUT NEVER GROWS */
+
 .typing-input {
     width: 100%;
+    height: 75px;
     min-height: 75px;
+    max-height: 75px;
+    resize: none;
+    overflow-y: auto;
     background: var(--panel);
     border: 1px solid var(--border);
     color: white;
     border-radius: 12px;
-    padding: 20px;
+    padding: 18px;
     font-size: 18px;
-    line-height: 1.6;
-    resize: none;
+    line-height: 1.5;
     outline: none;
     text-transform: none;
     autocapitalize: off;
@@ -246,7 +220,7 @@ select option {
 }
 
 .typing-input:focus {
-    border-color: #484e57;
+    border-color: #454c55;
 }
 
 .typing-input::placeholder {
@@ -256,16 +230,20 @@ select option {
 .start-row {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
     gap: 10px;
+    margin-top: 22px;
+}
+
+button {
+    cursor: pointer;
 }
 
 .start-btn {
     background: var(--accent);
-    color: #161616;
+    color: #111;
     border: none;
     border-radius: 10px;
-    padding: 12px 25px;
+    padding: 12px 24px;
     font-weight: 700;
     font-size: 15px;
 }
@@ -284,8 +262,6 @@ select option {
     font-size: 12px;
     margin-top: 20px;
 }
-
-/* CUSTOM TEXT */
 
 .custom-panel {
     display: none;
@@ -318,11 +294,9 @@ select option {
     font-weight: bold;
 }
 
-/* RESULT */
-
 .result-screen {
     display: none;
-    max-width: 1000px;
+    max-width: 950px;
     margin: auto;
 }
 
@@ -330,13 +304,12 @@ select option {
     text-align: center;
     font-size: 28px;
     color: var(--accent);
-    margin-bottom: 8px;
 }
 
 .result-subtitle {
     text-align: center;
     color: var(--muted);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .result-grid {
@@ -359,7 +332,7 @@ select option {
 }
 
 .result-card .value {
-    font-size: 27px;
+    font-size: 26px;
     font-family: JetBrains Mono, monospace;
     color: var(--accent);
     margin-top: 10px;
@@ -436,11 +409,11 @@ select option {
 @media(max-width:700px) {
 
     .app {
-        padding: 15px;
+        padding: 12px;
     }
 
     .settings {
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
 
     .setting-group {
@@ -454,7 +427,7 @@ select option {
     }
 
     .live-stats {
-        gap: 20px;
+        gap: 17px;
     }
 
     .stat-value {
@@ -462,7 +435,18 @@ select option {
     }
 
     .typing-display {
-        min-height: 220px;
+        height: 155px;
+        max-height: 155px;
+        padding: 12px;
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+    .typing-input {
+        height: 75px;
+        min-height: 75px;
+        max-height: 75px;
+        font-size: 16px;
     }
 
     .result-grid {
@@ -472,9 +456,7 @@ select option {
     #speedGraph {
         height: 250px;
     }
-
 }
-
 </style>
 </head>
 
@@ -483,10 +465,9 @@ select option {
 <div class="app">
 
 <header class="header">
-    <div class="logo">Key<span>Flow</span></div>
+    <div class="logo">Typing <span>Master</span></div>
 
-    <div class="header-right">
-        <button class="icon-btn" id="soundBtn">🔊</button>
+    <div>
         <button class="icon-btn" id="restartHeader">↻</button>
     </div>
 </header>
@@ -498,11 +479,11 @@ select option {
     <div class="setting-group">
 
         <button class="option" id="punctuationBtn">
-            <span class="symbol">¶</span> punctuation
+            ¶ punctuation
         </button>
 
         <button class="option" id="numbersBtn">
-            <span class="symbol">#</span> numbers
+            # numbers
         </button>
 
     </div>
@@ -553,14 +534,16 @@ select option {
 <!-- CUSTOM TEXT -->
 
 <div class="custom-panel" id="customPanel">
-    <p>Paste your own typing text:</p>
 
-    <textarea id="customText" placeholder="Write or paste your text here..."></textarea>
+    <p>Enter your own typing text:</p>
+
+    <textarea id="customText" placeholder="Write or paste text here..."></textarea>
 
     <button id="applyCustom">Apply Custom Text</button>
+
 </div>
 
-<!-- TEST -->
+<!-- TEST AREA -->
 
 <div class="test-area" id="testArea">
 
@@ -617,7 +600,7 @@ select option {
     </div>
 
     <div class="hint">
-        Start typing to begin the test · Esc to reset
+        Start typing to begin · Esc to reset
     </div>
 
 </div>
@@ -629,7 +612,7 @@ select option {
     <div class="result-title">Test Completed</div>
 
     <div class="result-subtitle">
-        Here's your typing performance
+        Your typing performance
     </div>
 
     <div class="result-grid">
@@ -678,10 +661,10 @@ select option {
 
     <div class="graph-panel">
 
-        <div class="graph-title">Typing Speed</div>
+        <div class="graph-title">Typing Speed Graph</div>
 
         <div class="graph-subtitle">
-            Your speed changes throughout the test
+            Your typing speed changes during the test
         </div>
 
         <canvas id="speedGraph"></canvas>
@@ -712,9 +695,9 @@ select option {
 
 <script>
 
-// ====================================
-// WORD DATABASE
-// ====================================
+// =============================
+// WORD BANK
+// =============================
 
 const wordBank = [
 "the","and","you","that","have","for","with","this","from",
@@ -735,23 +718,21 @@ const wordBank = [
 "information","communication","personal","quality","complete",
 "solution","problem","answer","question","understand","explain",
 "example","reason","different","similar","continue","finish",
-"future","today","tomorrow","computer","internet","website",
-"application","program","document","data","excel","formula",
-"table","report","accountant","business","financial","statement",
-"balance","invoice","payment","customer","company","employee",
-"manager","office","professional","planning","organizing",
-"decision","strategy","project","task","efficient","productive",
-"accurate","careful","responsible","creative","successful",
-"positive","motivated","patient","honest","respect","support",
-"community","family","friend","school","college","university",
-"career","opportunity","achievement","improvement","performance",
-"excellent","quality","standard","value","purpose","direction",
-"simple","beautiful","design","modern","system","process",
-"important","necessary","useful","helpful","powerful","effective",
-"practice","training","exercise","activity","skill","ability",
-"method","technique","keyboard","typing","letter","character",
+"today","tomorrow","website","application","program","document",
+"data","excel","formula","table","report","accountant",
+"financial","statement","balance","invoice","payment",
+"customer","company","employee","manager","planning",
+"organizing","decision","strategy","project","task",
+"efficient","productive","accurate","careful","responsible",
+"creative","successful","positive","motivated","patient",
+"honest","respect","support","community","family","friend",
+"school","college","university","opportunity","achievement",
+"improvement","performance","excellent","standard","value",
+"purpose","direction","design","modern","process","necessary",
+"useful","helpful","powerful","effective","training","exercise",
+"activity","ability","method","technique","letter","character",
 "sentence","paragraph","language","english","word","space",
-"capital","small","punctuation","symbol","number","text"
+"capital","small","punctuation","symbol","text"
 ];
 
 const quotes = [
@@ -763,15 +744,20 @@ const quotes = [
 "focus on accuracy before increasing your typing speed"
 ];
 
+// =============================
+// VARIABLES
+// =============================
+
 let mode = "time";
 let testDuration = 30;
 let wordLimit = 50;
 
 let punctuation = false;
 let numbers = false;
-
 let customText = "";
+
 let activeText = "";
+let typed = "";
 
 let started = false;
 let finished = false;
@@ -786,10 +772,12 @@ let previousWpm = 0;
 let highestWpm = 0;
 let lowestWpm = Infinity;
 
-let typed = "";
-
 const input = document.getElementById("typingInput");
 const display = document.getElementById("typingDisplay");
+
+// =============================
+// GENERATE TEXT
+// =============================
 
 function randomWord() {
 
@@ -824,86 +812,72 @@ function generateText(count = 500) {
 function getText() {
 
     if (mode === "quote") {
-
-        return quotes[
-            Math.floor(Math.random() * quotes.length)
-        ];
-
+        return quotes[Math.floor(Math.random() * quotes.length)];
     }
 
     if (mode === "custom" && customText.trim() !== "") {
-
         return customText.trim();
-
     }
 
-    return generateText(1000);
-
+    return generateText(500);
 }
 
-// ====================================
-// TEXT DISPLAY
-// ====================================
+// =============================
+// FIXED DISPLAY WINDOW
+// =============================
 
 function renderText() {
 
     display.innerHTML = "";
 
-    const text = activeText;
+    // केवल typed cursor के आसपास टेक्स्ट दिखाएँ
+    // पूरा बहुत बड़ा टेक्स्ट स्क्रीन पर नहीं आएगा
 
-    for (let i = 0; i < text.length; i++) {
+    const windowStart = Math.max(0, typed.length - 45);
+
+    const windowEnd = Math.min(
+        activeText.length,
+        typed.length + 180
+    );
+
+    const visibleText = activeText.slice(
+        windowStart,
+        windowEnd
+    );
+
+    for (let i = 0; i < visibleText.length; i++) {
+
+        const realIndex = windowStart + i;
 
         const span = document.createElement("span");
 
         span.className = "char";
 
-        span.textContent = text[i];
+        span.textContent = visibleText[i];
+
+        if (realIndex < typed.length) {
+
+            if (typed[realIndex] === activeText[realIndex]) {
+                span.classList.add("correct");
+            } else {
+                span.classList.add("incorrect");
+            }
+
+        }
+
+        if (realIndex === typed.length) {
+            span.classList.add("cursor");
+        }
 
         display.appendChild(span);
 
     }
 
-    updateHighlight();
-
 }
 
-function updateHighlight() {
-
-    const spans = display.querySelectorAll(".char");
-
-    spans.forEach((span, i) => {
-
-        span.classList.remove(
-            "correct",
-            "incorrect",
-            "cursor"
-        );
-
-        if (i < typed.length) {
-
-            if (typed[i] === activeText[i]) {
-
-                span.classList.add("correct");
-
-            } else {
-
-                span.classList.add("incorrect");
-
-            }
-
-        }
-
-        if (i === typed.length) {
-            span.classList.add("cursor");
-        }
-
-    });
-
-}
-
-// ====================================
+// =============================
 // SETTINGS
-// ====================================
+// =============================
 
 function setMode(newMode) {
 
@@ -934,13 +908,17 @@ function setMode(newMode) {
 
 }
 
-document.getElementById("timeModeBtn").onclick = () => setMode("time");
+document.getElementById("timeModeBtn").onclick =
+    () => setMode("time");
 
-document.getElementById("wordModeBtn").onclick = () => setMode("words");
+document.getElementById("wordModeBtn").onclick =
+    () => setMode("words");
 
-document.getElementById("quoteModeBtn").onclick = () => setMode("quote");
+document.getElementById("quoteModeBtn").onclick =
+    () => setMode("quote");
 
-document.getElementById("customModeBtn").onclick = () => setMode("custom");
+document.getElementById("customModeBtn").onclick =
+    () => setMode("custom");
 
 document.querySelectorAll("[data-time]").forEach(button => {
 
@@ -996,9 +974,9 @@ document.getElementById("applyCustom").onclick = function() {
 
 };
 
-// ====================================
-// TEST INITIALIZATION
-// ====================================
+// =============================
+// RESET
+// =============================
 
 function resetTest() {
 
@@ -1006,49 +984,36 @@ function resetTest() {
 
     started = false;
     finished = false;
-
     typed = "";
 
     input.value = "";
-
     input.disabled = false;
-
-    testDuration = testDuration || 30;
 
     activeText = getText();
 
     graphData = [];
-
     lastGraphTime = 0;
-
     previousWpm = 0;
-
     highestWpm = 0;
-
     lowestWpm = Infinity;
 
     document.getElementById("timer").textContent =
         mode === "time" ? testDuration : wordLimit;
 
     document.getElementById("wpm").textContent = "0";
-
     document.getElementById("accuracy").textContent = "100%";
-
     document.getElementById("errors").textContent = "0";
 
     document.getElementById("testArea").style.display = "block";
-
     document.getElementById("resultScreen").style.display = "none";
 
     renderText();
 
-    input.focus();
-
 }
 
-// ====================================
+// =============================
 // START
-// ====================================
+// =============================
 
 function startTest() {
 
@@ -1068,9 +1033,9 @@ function startTest() {
 
 }
 
-// ====================================
+// =============================
 // CALCULATIONS
-// ====================================
+// =============================
 
 function elapsedSeconds() {
 
@@ -1124,9 +1089,7 @@ function getWpm() {
 
 function getAccuracy() {
 
-    if (typed.length === 0) {
-        return 100;
-    }
+    if (typed.length === 0) return 100;
 
     return Math.round(
         (correctChars() / typed.length) * 100
@@ -1140,9 +1103,9 @@ function completedWords() {
 
 }
 
-// ====================================
-// LIVE
-// ====================================
+// =============================
+// LIVE UPDATE
+// =============================
 
 function updateLive() {
 
@@ -1192,7 +1155,7 @@ function updateLive() {
 
     }
 
-    // Graph sampling every 1 second
+    // हर सेकंड Graph Point
 
     if (elapsed >= lastGraphTime + 1) {
 
@@ -1218,9 +1181,9 @@ function updateLive() {
 
 }
 
-// ====================================
+// =============================
 // INPUT
-// ====================================
+// =============================
 
 input.addEventListener("input", function() {
 
@@ -1232,25 +1195,23 @@ input.addEventListener("input", function() {
 
     typed = input.value;
 
-    updateHighlight();
+    renderText();
 
     updateLive();
 
-    // Add more text when reaching the end
+    // टेक्स्ट खत्म होने से पहले नया टेक्स्ट जोड़ें
 
-    if (typed.length >= activeText.length - 50) {
+    if (typed.length >= activeText.length - 100) {
 
         activeText += " " + generateText(500);
-
-        renderText();
 
     }
 
 });
 
-// ====================================
+// =============================
 // FINISH
-// ====================================
+// =============================
 
 function finishTest() {
 
@@ -1292,46 +1253,29 @@ function finishTest() {
         lowestWpm = 0;
     }
 
-    document.getElementById("rWpm").textContent =
-        finalWpm;
-
-    document.getElementById("rAverage").textContent =
-        finalWpm;
-
-    document.getElementById("rHighest").textContent =
-        highestWpm;
-
-    document.getElementById("rLowest").textContent =
-        lowestWpm;
-
-    document.getElementById("rAccuracy").textContent =
-        accuracy + "%";
-
-    document.getElementById("rCorrect").textContent =
-        totalCorrect;
-
-    document.getElementById("rErrors").textContent =
-        errors;
-
-    document.getElementById("rWords").textContent =
-        totalWords;
+    document.getElementById("rWpm").textContent = finalWpm;
+    document.getElementById("rAverage").textContent = finalWpm;
+    document.getElementById("rHighest").textContent = highestWpm;
+    document.getElementById("rLowest").textContent = lowestWpm;
+    document.getElementById("rAccuracy").textContent = accuracy + "%";
+    document.getElementById("rCorrect").textContent = totalCorrect;
+    document.getElementById("rErrors").textContent = errors;
+    document.getElementById("rWords").textContent = totalWords;
 
     document.getElementById("resultDate").textContent =
         new Date().toLocaleString();
 
-    document.getElementById("testArea").style.display =
-        "none";
+    document.getElementById("testArea").style.display = "none";
 
-    document.getElementById("resultScreen").style.display =
-        "block";
+    document.getElementById("resultScreen").style.display = "block";
 
     drawGraph();
 
 }
 
-// ====================================
+// =============================
 // GRAPH
-// ====================================
+// =============================
 
 function drawGraph() {
 
@@ -1424,7 +1368,7 @@ function drawGraph() {
 
     ctx.stroke();
 
-    // Point labels
+    // Points
 
     graphData.forEach(p => {
 
@@ -1459,11 +1403,7 @@ function drawGraph() {
 
     ctx.font = "12px JetBrains Mono";
 
-    ctx.fillText(
-        "0 sec",
-        padding,
-        height - 10
-    );
+    ctx.fillText("0 sec", padding, height - 10);
 
     ctx.fillText(
         maxTime + " sec",
@@ -1471,7 +1411,7 @@ function drawGraph() {
         height - 10
     );
 
-    // Graph Table
+    // TABLE
 
     let html = `
     <table>
@@ -1489,13 +1429,9 @@ function drawGraph() {
 
         let color = "#d6d9df";
 
-        if (p.change > 0) {
-            color = "#65d69a";
-        }
+        if (p.change > 0) color = "#65d69a";
 
-        if (p.change < 0) {
-            color = "#f07178";
-        }
+        if (p.change < 0) color = "#f07178";
 
         html += `
         <tr>
@@ -1511,14 +1447,13 @@ function drawGraph() {
 
     html += "</tbody></table>";
 
-    document.getElementById("graphTable").innerHTML =
-        html;
+    document.getElementById("graphTable").innerHTML = html;
 
 }
 
-// ====================================
+// =============================
 // BUTTONS
-// ====================================
+// =============================
 
 document.getElementById("startBtn").onclick = function() {
 
@@ -1544,9 +1479,9 @@ document.addEventListener("keydown", function(e) {
 
 });
 
-// ====================================
-// INIT
-// ====================================
+// =============================
+// INITIALIZE
+// =============================
 
 resetTest();
 
