@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,180 +16,190 @@ body {
     font-family: Arial, sans-serif;
     background: #101827;
     color: white;
-    text-align: center;
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 950px;
     margin: auto;
     padding: 20px;
 }
 
-h1 {
+header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+header h1 {
     color: #38bdf8;
-    font-size: 35px;
+    margin-bottom: 5px;
 }
 
-.settings {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin: 20px 0;
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
 }
 
-select, button {
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat {
+    background: #0f172a;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.stat h2 {
+    color: #38bdf8;
+    margin: 5px 0;
+}
+
+.stat p {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 13px;
+}
+
+select, button, textarea {
     font-size: 16px;
 }
 
 select {
-    background: #243247;
+    padding: 10px;
+    border-radius: 8px;
+    background: #0f172a;
     color: white;
+    border: 1px solid #475569;
 }
 
 button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
     background: #38bdf8;
-    color: #101827;
+    color: #0f172a;
     font-weight: bold;
     cursor: pointer;
+    margin: 5px;
 }
 
 button:hover {
-    background: #0ea5e9;
+    background: #7dd3fc;
 }
 
-.stats {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin: 20px 0;
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
-.stat {
-    background: #243247;
-    padding: 15px 25px;
-    border-radius: 10px;
-    min-width: 100px;
-}
-
-.stat h3 {
-    margin: 0;
-    color: #38bdf8;
-    font-size: 25px;
-}
-
-.stat p {
-    margin: 5px 0 0;
-}
-
-#textDisplay {
-    background: #243247;
-    padding: 25px;
-    border-radius: 12px;
-    font-size: 22px;
+#typingText {
+    font-size: 20px;
     line-height: 1.8;
-    text-align: left;
+    letter-spacing: 1px;
+    background: #0f172a;
+    padding: 18px;
+    border-radius: 10px;
     margin: 20px 0;
-    min-height: 150px;
     word-wrap: break-word;
 }
 
 .correct {
-    color: #22c55e;
+    color: #4ade80;
 }
 
-.incorrect {
-    color: #ef4444;
-    background: #7f1d1d;
+.wrong {
+    color: #f87171;
+    background: #451a1a;
 }
 
 .current {
-    background: #38bdf8;
-    color: #101827;
-    border-radius: 3px;
+    border-bottom: 2px solid #38bdf8;
 }
 
-#typingInput {
+textarea {
     width: 100%;
-    height: 120px;
-    padding: 15px;
-    font-size: 20px;
-    background: #1e293b;
+    min-height: 120px;
+    resize: vertical;
+    background: #0f172a;
     color: white;
-    border: 2px solid #38bdf8;
+    border: 2px solid #475569;
+    padding: 15px;
     border-radius: 10px;
     outline: none;
-    resize: none;
+    line-height: 1.6;
+    autocapitalize: off;
+    text-transform: none;
 }
 
-#typingInput:disabled {
-    opacity: 0.5;
+textarea:focus {
+    border-color: #38bdf8;
 }
 
-.keyboard {
-    margin-top: 25px;
-}
-
-.keyboard-row {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin: 6px 0;
-    flex-wrap: wrap;
-}
-
-.key {
-    background: #334155;
-    padding: 10px;
-    min-width: 35px;
-    border-radius: 5px;
-    color: white;
-}
-
-.key.active {
-    background: #38bdf8;
-    color: black;
-    transform: scale(1.1);
-}
-
-.space-key {
-    width: 250px;
-}
-
-.result {
-    display: none;
-    background: #243247;
-    padding: 25px;
-    border-radius: 12px;
-    margin-top: 20px;
-}
-
-.result h2 {
-    color: #38bdf8;
-}
-
-.footer {
-    margin-top: 30px;
+textarea::placeholder {
     color: #94a3b8;
 }
 
+.controls {
+    text-align: center;
+}
+
+#resultScreen {
+    display: none;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.result-box {
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+}
+
+.result-box h2 {
+    color: #38bdf8;
+}
+
+#graphCanvas {
+    width: 100%;
+    height: 300px;
+    background: #0f172a;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#graphInfo {
+    color: #cbd5e1;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
 @media(max-width:600px) {
-    h1 {
-        font-size: 28px;
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    #textDisplay {
-        font-size: 18px;
-        padding: 15px;
+    .result-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .stat {
-        padding: 10px;
-        min-width: 75px;
+    #typingText {
+        font-size: 17px;
     }
 }
 </style>
@@ -198,515 +209,655 @@ button:hover {
 
 <div class="container">
 
-<h1>⌨️ Typing Master</h1>
-<p>Improve your typing speed and accuracy</p>
+<header>
+    <h1>⌨️ Typing Master</h1>
+    <p>Improve your typing speed every day</p>
+</header>
 
-<div class="settings">
+<div class="card" id="mainScreen">
 
-<select id="timeSelect">
-<option value="60">1 Minute</option>
-<option value="120">2 Minutes</option>
-<option value="300">5 Minutes</option>
-<option value="600">10 Minutes</option>
-<option value="900">15 Minutes</option>
-<option value="1800">30 Minutes</option>
-</select>
+    <div style="text-align:center;margin-bottom:20px">
+        <label for="level"><b>Select Level:</b></label>
+        <select id="level">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+    </div>
 
-<select id="lengthSelect">
-<option value="short">Short Text</option>
-<option value="medium" selected>Medium Text</option>
-<option value="long">Long Text</option>
-</select>
+    <div class="stats">
+        <div class="stat">
+            <p>Time</p>
+            <h2 id="time">60</h2>
+        </div>
 
-<select id="modeSelect">
-<option value="small">Small Letters</option>
-<option value="capital">Capital Letters</option>
-<option value="mixed">Mixed Letters</option>
-<option value="punctuation">Punctuation</option>
-<option value="numbers">Numbers</option>
-</select>
+        <div class="stat">
+            <p>WPM</p>
+            <h2 id="wpm">0</h2>
+        </div>
 
-<select id="fontSelect">
-<option value="18">Small Text</option>
-<option value="22" selected>Normal Text</option>
-<option value="28">Large Text</option>
-</select>
+        <div class="stat">
+            <p>Accuracy</p>
+            <h2 id="accuracy">100%</h2>
+        </div>
 
-</div>
+        <div class="stat">
+            <p>Errors</p>
+            <h2 id="errors">0</h2>
+        </div>
+    </div>
 
-<div class="stats">
+    <div id="typingText"></div>
 
-<div class="stat">
-<h3 id="timer">60</h3>
-<p>Time</p>
-</div>
+    <textarea
+        id="typingInput"
+        placeholder="Click Start Test and type here..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        disabled
+    ></textarea>
 
-<div class="stat">
-<h3 id="wpm">0</h3>
-<p>WPM</p>
-</div>
-
-<div class="stat">
-<h3 id="accuracy">100%</h3>
-<p>Accuracy</p>
-</div>
-
-<div class="stat">
-<h3 id="errors">0</h3>
-<p>Errors</p>
-</div>
+    <div class="controls">
+        <button id="startBtn">Start Test</button>
+        <button id="resetBtn">Reset</button>
+    </div>
 
 </div>
 
-<div id="textDisplay">
-Select settings and click Start
+<div class="card" id="resultScreen">
+
+    <h1 style="text-align:center;color:#38bdf8">
+        🎉 Test Completed!
+    </h1>
+
+    <div class="result-grid">
+
+        <div class="result-box">
+            <p>Final WPM</p>
+            <h2 id="finalWpm">0</h2>
+        </div>
+
+        <div class="result-box">
+            <p>Accuracy</p>
+            <h2 id="finalAccuracy">0%</h2>
+        </div>
+
+        <div class="result-box">
+            <p>Correct Characters</p>
+            <h2 id="finalCorrect">0</h2>
+        </div>
+
+        <div class="result-box">
+            <p>Wrong Characters</p>
+            <h2 id="finalWrong">0</h2>
+        </div>
+
+        <div class="result-box">
+            <p>Total Characters</p>
+            <h2 id="finalTotal">0</h2>
+        </div>
+
+        <div class="result-box">
+            <p>Test Duration</p>
+            <h2 id="finalTime">60 sec</h2>
+        </div>
+
+        <div class="result-box">
+            <p>Best WPM</p>
+            <h2 id="bestWpm">0</h2>
+        </div>
+
+        <div class="result-box">
+            <p>Total Tests</p>
+            <h2 id="totalTests">0</h2>
+        </div>
+
+    </div>
+
+    <div class="card">
+        <h2 style="text-align:center">📈 Typing Speed Graph</h2>
+
+        <p style="text-align:center;color:#cbd5e1">
+            यह ग्राफ दिखाएगा कि टेस्ट के दौरान आपकी स्पीड
+            कैसे बढ़ी और कम हुई।
+        </p>
+
+        <canvas id="graphCanvas"></canvas>
+
+        <p id="graphInfo"></p>
+    </div>
+
+    <div class="card">
+        <h3>📅 Test Date & Time</h3>
+        <p id="testDate"></p>
+    </div>
+
+    <div class="controls">
+        <button onclick="restartTest()">Try Again</button>
+        <button onclick="goHome()">Home</button>
+    </div>
+
 </div>
-
-<textarea id="typingInput"
-placeholder="Start typing here..."
-disabled></textarea>
-
-<br><br>
-
-<button onclick="startTest()">▶ Start</button>
-<button onclick="restartTest()">↻ Restart</button>
-
-<div class="result" id="resultBox">
-
-<h2>🎉 Test Completed!</h2>
-
-<h3>Typing Speed: <span id="finalWpm">0</span> WPM</h3>
-<h3>Accuracy: <span id="finalAccuracy">0%</span></h3>
-<h3>Total Errors: <span id="finalErrors">0</span></h3>
-
-<button onclick="startTest()">Try Again</button>
-
-</div>
-
-<div class="keyboard">
-
-<h2>Keyboard</h2>
-
-<div class="keyboard-row">
-<div class="key">Q</div>
-<div class="key">W</div>
-<div class="key">E</div>
-<div class="key">R</div>
-<div class="key">T</div>
-<div class="key">Y</div>
-<div class="key">U</div>
-<div class="key">I</div>
-<div class="key">O</div>
-<div class="key">P</div>
-</div>
-
-<div class="keyboard-row">
-<div class="key">A</div>
-<div class="key">S</div>
-<div class="key">D</div>
-<div class="key">F</div>
-<div class="key">G</div>
-<div class="key">H</div>
-<div class="key">J</div>
-<div class="key">K</div>
-<div class="key">L</div>
-</div>
-
-<div class="keyboard-row">
-<div class="key">Z</div>
-<div class="key">X</div>
-<div class="key">C</div>
-<div class="key">V</div>
-<div class="key">B</div>
-<div class="key">N</div>
-<div class="key">M</div>
-</div>
-
-<div class="keyboard-row">
-<div class="key space-key">SPACE</div>
-</div>
-
-</div>
-
-<p class="footer">Typing Master - Practice Every Day</p>
 
 </div>
 
 <script>
 
-const smallWords = [
-"hello world",
-"i am learning typing",
-"practice makes perfect",
-"typing is a useful skill",
-"i want to improve my speed",
-"i can learn anything",
-"today is a good day",
-"keep practicing every day",
-"learning is important",
-"i will become better",
-"work hard and stay focused",
-"typing helps me improve",
-"i practice every day",
-"i can do it",
-"never stop learning",
-"this is my practice",
-"my typing speed is growing",
-"i am improving every day",
-"learn new skills",
-"focus on your work"
-];
+const texts = {
 
-const capitalWords = [
-"HELLO WORLD",
-"I AM LEARNING TYPING",
-"PRACTICE MAKES PERFECT",
-"TYPING IS A USEFUL SKILL",
-"I WANT TO IMPROVE MY SPEED",
-"I CAN LEARN ANYTHING",
-"TODAY IS A GOOD DAY",
-"KEEP PRACTICING EVERY DAY",
-"LEARNING IS IMPORTANT",
-"I WILL BECOME BETTER",
-"WORK HARD AND STAY FOCUSED",
-"TYPING HELPS ME IMPROVE",
-"I PRACTICE EVERY DAY",
-"I CAN DO IT",
-"NEVER STOP LEARNING",
-"THIS IS MY PRACTICE",
-"MY TYPING SPEED IS GROWING",
-"I AM IMPROVING EVERY DAY",
-"LEARN NEW SKILLS",
-"FOCUS ON YOUR WORK"
-];
+easy: [
+"i am learning typing every day.",
+"i want to improve my typing speed.",
+"practice makes me better.",
+"i can learn anything with practice.",
+"typing is an important computer skill.",
+"i will become a good accountant."
+],
 
-const mixedWords = [
-"Hello World",
-"I Am Learning Typing",
-"Practice Makes Perfect",
-"Typing Is A Useful Skill",
-"I Want To Improve My Speed",
-"I Can Learn Anything",
-"Today Is A Good Day",
-"Keep Practicing Every Day",
-"Learning Is Important",
-"I Will Become Better",
-"Work Hard And Stay Focused",
-"Typing Helps Me Improve",
-"I Practice Every Day",
-"I Can Do It",
-"Never Stop Learning",
-"This Is My Practice",
-"My Typing Speed Is Growing",
-"I Am Improving Every Day",
-"Learn New Skills",
-"Focus On Your Work"
-];
+medium: [
+"i am working hard to improve my typing speed and accuracy.",
+"learning new skills helps me prepare for my future.",
+"i practice typing every day to become faster and better.",
+"computer skills are important for every professional job.",
+"i believe that regular practice can improve my performance."
+],
 
-const punctuationWords = [
-"Hello, how are you?",
-"I am learning typing.",
-"Practice makes perfect!",
-"Are you ready?",
-"Yes, I am ready.",
-"Good morning!",
-"How is your day?",
-"Keep learning, keep growing.",
-"Work hard; stay focused.",
-"Typing is fun!",
-"Where are you going?",
-"I like learning new things.",
-"Let's practice today.",
-"Wow! That is amazing.",
-"Time is valuable.",
-"Do your best, always.",
-"Learn, practice, improve.",
-"Are you happy today?",
-"Never give up!",
-"Good luck!"
-];
+hard: [
+"accuracy is more important than speed when learning typing.",
+"professional accountants must maintain accurate financial records.",
+"consistent practice improves confidence, productivity and performance.",
+"technology helps people complete their work efficiently and accurately.",
+"i am preparing myself for a successful professional career."
+]
 
-const numberWords = [
-"1234567890",
-"9876543210",
-"12345 67890",
-"2026 2027 2028",
-"100 200 300 400",
-"5000 6000 7000",
-"123 456 789",
-"987 654 321",
-"111 222 333",
-"444 555 666",
-"789 456 123",
-"2025 2026 2027",
-"10000 20000 30000",
-"55555 66666 77777",
-"98765 43210",
-"123456 789012",
-"2026 11 22",
-"100 500 1000 5000",
-"1234 5678 9012",
-"999 888 777 666"
-];
+};
 
-let targetText = "";
-let timerInterval;
-let timeLeft = 60;
-let started = false;
-let startTime = 0;
+let currentText = "";
+let startTime = null;
+let timer = null;
+let duration = 60;
+let finished = false;
 
+let graphData = [];
+let lastGraphTime = 0;
+
+const typingText = document.getElementById("typingText");
 const typingInput = document.getElementById("typingInput");
-const textDisplay = document.getElementById("textDisplay");
+const startBtn = document.getElementById("startBtn");
 
-function generateText() {
+function getRandomText() {
 
-    let mode = document.getElementById("modeSelect").value;
-    let length = document.getElementById("lengthSelect").value;
+    const level = document.getElementById("level").value;
+    const list = texts[level];
 
-    let source;
+    return list[Math.floor(Math.random() * list.length)];
 
-    if(mode === "small") {
-        source = smallWords;
-    }
-    else if(mode === "capital") {
-        source = capitalWords;
-    }
-    else if(mode === "mixed") {
-        source = mixedWords;
-    }
-    else if(mode === "punctuation") {
-        source = punctuationWords;
-    }
-    else {
-        source = numberWords;
-    }
+}
 
-    let count = 5;
+function loadText() {
 
-    if(length === "short") {
-        count = 3;
+    currentText = getRandomText();
+
+    typingInput.value = "";
+
+    typingText.innerHTML = "";
+
+    for (let i = 0; i < currentText.length; i++) {
+
+        const span = document.createElement("span");
+
+        span.textContent = currentText[i];
+
+        typingText.appendChild(span);
+
     }
 
-    if(length === "medium") {
-        count = 8;
-    }
-
-    if(length === "long") {
-        count = 15;
-    }
-
-    let result = [];
-
-    for(let i = 0; i < count; i++) {
-        result.push(source[Math.floor(Math.random() * source.length)]);
-    }
-
-    targetText = result.join(" ");
-
-    textDisplay.innerHTML = "";
-
-    targetText.split("").forEach((char, index) => {
-
-        let span = document.createElement("span");
-        span.innerText = char;
-        span.id = "char" + index;
-
-        textDisplay.appendChild(span);
-
-    });
-
-    updateHighlight();
 }
 
 function startTest() {
 
-    clearInterval(timerInterval);
+    if (finished) return;
 
-    timeLeft = parseInt(document.getElementById("timeSelect").value);
-
-    document.getElementById("timer").innerText = timeLeft;
-
-    document.getElementById("resultBox").style.display = "none";
+    loadText();
 
     typingInput.disabled = false;
-    typingInput.value = "";
     typingInput.focus();
 
-    generateText();
+    startTime = Date.now();
 
-    started = false;
+    graphData = [];
+    lastGraphTime = 0;
 
-    document.getElementById("wpm").innerText = 0;
-    document.getElementById("accuracy").innerText = "100%";
-    document.getElementById("errors").innerText = 0;
+    graphData.push({
+        time: 0,
+        wpm: 0
+    });
+
+    startBtn.disabled = true;
+
+    timer = setInterval(updateTimer, 1000);
 
 }
 
-function restartTest() {
-    startTest();
+function updateTimer() {
+
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+
+    const remaining = duration - elapsed;
+
+    document.getElementById("time").textContent = remaining;
+
+    updateStats();
+
+    if (elapsed >= duration) {
+
+        finishTest();
+
+        return;
+
+    }
+
+    // हर 5 सेकंड में स्पीड रिकॉर्ड करें
+
+    if (elapsed >= lastGraphTime + 5) {
+
+        const wpm = calculateWpm();
+
+        graphData.push({
+            time: elapsed,
+            wpm: wpm
+        });
+
+        lastGraphTime = elapsed;
+
+    }
+
+}
+
+function updateStats() {
+
+    const typed = typingInput.value;
+
+    let correct = 0;
+    let wrong = 0;
+
+    for (let i = 0; i < typed.length; i++) {
+
+        if (typed[i] === currentText[i]) {
+            correct++;
+        } else {
+            wrong++;
+        }
+
+    }
+
+    const elapsed = startTime
+        ? Math.max((Date.now() - startTime) / 60000, 0.01)
+        : 0.01;
+
+    const wpm = Math.round((correct / 5) / elapsed);
+
+    const accuracy = typed.length === 0
+        ? 100
+        : Math.round((correct / typed.length) * 100);
+
+    document.getElementById("wpm").textContent = wpm;
+
+    document.getElementById("accuracy").textContent =
+        accuracy + "%";
+
+    document.getElementById("errors").textContent = wrong;
+
+    updateTextHighlight();
+
+}
+
+function calculateWpm() {
+
+    const typed = typingInput.value;
+
+    let correct = 0;
+
+    for (let i = 0; i < typed.length; i++) {
+
+        if (typed[i] === currentText[i]) {
+            correct++;
+        }
+
+    }
+
+    const elapsed = Math.max(
+        (Date.now() - startTime) / 60000,
+        0.01
+    );
+
+    return Math.round((correct / 5) / elapsed);
+
+}
+
+function updateTextHighlight() {
+
+    const typed = typingInput.value;
+
+    const spans = typingText.querySelectorAll("span");
+
+    spans.forEach((span, index) => {
+
+        span.className = "";
+
+        if (index < typed.length) {
+
+            if (typed[index] === currentText[index]) {
+                span.classList.add("correct");
+            } else {
+                span.classList.add("wrong");
+            }
+
+        }
+
+        if (index === typed.length) {
+            span.classList.add("current");
+        }
+
+    });
+
 }
 
 typingInput.addEventListener("input", function() {
 
-    if(!started) {
+    if (!startTime || finished) return;
 
-        started = true;
-        startTime = Date.now();
+    // टेक्स्ट को Capital या Lowercase में बदलने वाला
+    // कोई कोड नहीं है। जो टाइप किया जाएगा वही रहेगा।
 
-        timerInterval = setInterval(function() {
+    updateStats();
 
-            timeLeft--;
+    if (typingInput.value.length >= currentText.length) {
 
-            document.getElementById("timer").innerText = timeLeft;
+        loadText();
 
-            if(timeLeft <= 0) {
-                finishTest();
-            }
-
-        }, 1000);
-
-    }
-
-    let typed = typingInput.value;
-
-    let correct = 0;
-    let errors = 0;
-
-    for(let i = 0; i < typed.length; i++) {
-
-        if(typed[i] === targetText[i]) {
-            correct++;
-        }
-        else {
-            errors++;
-        }
-
-    }
-
-    let accuracy = typed.length > 0
-        ? Math.round((correct / typed.length) * 100)
-        : 100;
-
-    let elapsed = (Date.now() - startTime) / 60000;
-
-    let wpm = elapsed > 0
-        ? Math.round((correct / 5) / elapsed)
-        : 0;
-
-    document.getElementById("wpm").innerText = wpm;
-    document.getElementById("accuracy").innerText = accuracy + "%";
-    document.getElementById("errors").innerText = errors;
-
-    updateHighlight();
-
-    if(typed.length >= targetText.length) {
-        finishTest();
     }
 
 });
-
-function updateHighlight() {
-
-    let typed = typingInput.value;
-
-    targetText.split("").forEach((char, index) => {
-
-        let span = document.getElementById("char" + index);
-
-        if(!span) return;
-
-        span.className = "";
-
-        if(index < typed.length) {
-
-            if(typed[index] === targetText[index]) {
-                span.className = "correct";
-            }
-            else {
-                span.className = "incorrect";
-            }
-
-        }
-
-        if(index === typed.length) {
-            span.className = "current";
-        }
-
-    });
-
-    highlightKey();
-
-}
-
-function highlightKey() {
-
-    document.querySelectorAll(".key").forEach(key => {
-        key.classList.remove("active");
-    });
-
-    let nextChar = targetText[typingInput.value.length];
-
-    if(!nextChar) return;
-
-    let keyName = nextChar.toUpperCase();
-
-    document.querySelectorAll(".key").forEach(key => {
-
-        if(key.innerText === keyName) {
-            key.classList.add("active");
-        }
-
-    });
-
-    if(nextChar === " ") {
-        document.querySelector(".space-key").classList.add("active");
-    }
-
-}
 
 function finishTest() {
 
-    clearInterval(timerInterval);
+    if (finished) return;
+
+    finished = true;
+
+    clearInterval(timer);
 
     typingInput.disabled = true;
 
-    let typed = typingInput.value;
+    const elapsed = Math.min(
+        (Date.now() - startTime) / 1000,
+        duration
+    );
+
+    const typed = typingInput.value;
 
     let correct = 0;
-    let errors = 0;
+    let wrong = 0;
 
-    for(let i = 0; i < typed.length; i++) {
+    for (let i = 0; i < typed.length; i++) {
 
-        if(typed[i] === targetText[i]) {
+        if (typed[i] === currentText[i]) {
             correct++;
-        }
-        else {
-            errors++;
+        } else {
+            wrong++;
         }
 
     }
 
-    let accuracy = typed.length > 0
-        ? Math.round((correct / typed.length) * 100)
-        : 0;
+    const total = typed.length;
 
-    let elapsed = Math.max((Date.now() - startTime) / 60000, 0.01);
+    const accuracy = total === 0
+        ? 0
+        : Math.round((correct / total) * 100);
 
-    let wpm = Math.round((correct / 5) / elapsed);
+    const finalWpm = Math.round(
+        (correct / 5) / Math.max(elapsed / 60, 0.01)
+    );
 
-    document.getElementById("finalWpm").innerText = wpm;
-    document.getElementById("finalAccuracy").innerText = accuracy + "%";
-    document.getElementById("finalErrors").innerText = errors;
+    // अंतिम ग्राफ पॉइंट
 
-    document.getElementById("resultBox").style.display = "block";
+    graphData.push({
+        time: Math.round(elapsed),
+        wpm: finalWpm
+    });
+
+    document.getElementById("finalWpm").textContent = finalWpm;
+    document.getElementById("finalAccuracy").textContent = accuracy + "%";
+    document.getElementById("finalCorrect").textContent = correct;
+    document.getElementById("finalWrong").textContent = wrong;
+    document.getElementById("finalTotal").textContent = total;
+    document.getElementById("finalTime").textContent =
+        Math.round(elapsed) + " sec";
+
+    // पुराने रिकॉर्ड सेव करें
+
+    let saved = JSON.parse(
+        localStorage.getItem("typingProgress") || "{}"
+    );
+
+    saved.bestWpm = Math.max(
+        saved.bestWpm || 0,
+        finalWpm
+    );
+
+    saved.totalTests = (saved.totalTests || 0) + 1;
+
+    saved.lastWpm = finalWpm;
+    saved.lastAccuracy = accuracy;
+
+    localStorage.setItem(
+        "typingProgress",
+        JSON.stringify(saved)
+    );
+
+    document.getElementById("bestWpm").textContent =
+        saved.bestWpm;
+
+    document.getElementById("totalTests").textContent =
+        saved.totalTests;
+
+    // तारीख और समय
+
+    const now = new Date();
+
+    document.getElementById("testDate").textContent =
+        now.toLocaleDateString() + " | " +
+        now.toLocaleTimeString();
+
+    document.getElementById("mainScreen").style.display = "none";
+
+    document.getElementById("resultScreen").style.display = "block";
+
+    drawGraph();
 
 }
 
-document.getElementById("fontSelect").addEventListener("change", function() {
+function drawGraph() {
 
-    textDisplay.style.fontSize = this.value + "px";
+    const canvas = document.getElementById("graphCanvas");
 
-});
+    const ctx = canvas.getContext("2d");
+
+    const width = canvas.clientWidth;
+
+    const height = 300;
+
+    canvas.width = width * window.devicePixelRatio;
+    canvas.height = height * window.devicePixelRatio;
+
+    ctx.scale(
+        window.devicePixelRatio,
+        window.devicePixelRatio
+    );
+
+    ctx.clearRect(0, 0, width, height);
+
+    const padding = 45;
+
+    const graphWidth = width - padding * 2;
+    const graphHeight = height - padding * 2;
+
+    const maxWpm = Math.max(
+        20,
+        ...graphData.map(point => point.wpm)
+    );
+
+    // ग्राफ की लाइनें
+
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 1;
+
+    for (let i = 0; i <= 5; i++) {
+
+        const y = padding + (graphHeight / 5) * i;
+
+        ctx.beginPath();
+
+        ctx.moveTo(padding, y);
+
+        ctx.lineTo(width - padding, y);
+
+        ctx.stroke();
+
+    }
+
+    // WPM नंबर
+
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "12px Arial";
+
+    for (let i = 0; i <= 5; i++) {
+
+        const value = Math.round(maxWpm - (maxWpm / 5) * i);
+
+        const y = padding + (graphHeight / 5) * i;
+
+        ctx.fillText(value, 5, y + 4);
+
+    }
+
+    // Graph Line
+
+    ctx.strokeStyle = "#38bdf8";
+    ctx.lineWidth = 3;
+
+    ctx.beginPath();
+
+    graphData.forEach((point, index) => {
+
+        const x = padding +
+            (point.time / duration) * graphWidth;
+
+        const y = padding +
+            graphHeight -
+            (point.wpm / maxWpm) * graphHeight;
+
+        if (index === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+
+    });
+
+    ctx.stroke();
+
+    // पॉइंट्स
+
+    graphData.forEach(point => {
+
+        const x = padding +
+            (point.time / duration) * graphWidth;
+
+        const y = padding +
+            graphHeight -
+            (point.wpm / maxWpm) * graphHeight;
+
+        ctx.fillStyle = "#facc15";
+
+        ctx.beginPath();
+
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+
+        ctx.fill();
+
+    });
+
+    // नीचे Time
+
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "12px Arial";
+
+    ctx.fillText("0 sec", padding, height - 10);
+
+    ctx.fillText(
+        duration + " sec",
+        width - padding - 35,
+        height - 10
+    );
+
+    document.getElementById("graphInfo").textContent =
+        "Graph shows your WPM speed during the test.";
+
+}
+
+function restartTest() {
+
+    finished = false;
+
+    startTime = null;
+
+    clearInterval(timer);
+
+    document.getElementById("resultScreen").style.display = "none";
+
+    document.getElementById("mainScreen").style.display = "block";
+
+    typingInput.value = "";
+
+    typingInput.disabled = true;
+
+    document.getElementById("time").textContent = duration;
+    document.getElementById("wpm").textContent = "0";
+    document.getElementById("accuracy").textContent = "100%";
+    document.getElementById("errors").textContent = "0";
+
+    startBtn.disabled = false;
+
+    loadText();
+
+}
+
+function goHome() {
+
+    restartTest();
+
+}
+
+document.getElementById("startBtn").addEventListener(
+    "click",
+    startTest
+);
+
+document.getElementById("resetBtn").addEventListener(
+    "click",
+    restartTest
+);
+
+document.getElementById("level").addEventListener(
+    "change",
+    loadText
+);
+
+loadText();
 
 </script>
 
