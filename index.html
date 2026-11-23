@@ -3,459 +3,433 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Typing Master</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-    --bg: #111315;
-    --panel: #191c20;
-    --panel2: #20242a;
-    --text: #d6d9df;
-    --muted: #737b86;
-    --accent: #f2c94c;
-    --green: #65d69a;
-    --red: #f07178;
-    --border: #292e34;
+  --bg:#111315;
+  --panel:#191c20;
+  --panel2:#22262b;
+  --text:#d6d9df;
+  --muted:#737b86;
+  --accent:#f2c94c;
+  --green:#65d69a;
+  --red:#f07178;
+  --border:#292e34;
 }
 
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
 }
 
-body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: Inter, Arial, sans-serif;
-    min-height: 100vh;
+.app{
+  max-width:1050px;
+  margin:auto;
+  padding:20px;
 }
 
-.app {
-    max-width: 1100px;
-    margin: auto;
-    padding: 20px;
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+.logo{
+  font-size:24px;
+  font-weight:700;
+  color:var(--accent);
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--accent);
+.logo span{color:white}
+
+.settings{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:30px;
 }
 
-.logo span {
-    color: white;
+.setting-group{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:7px;
+  border-radius:12px;
 }
 
-.icon-btn {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 10px 14px;
-    border-radius: 9px;
+.option{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:10px 12px;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-.settings {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 35px;
+.option.active{
+  background:#2c2a20;
+  color:var(--accent);
 }
 
-.setting-group {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: var(--panel);
-    padding: 7px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
+.option:hover{
+  background:var(--panel2);
+  color:white;
 }
 
-.option {
-    border: none;
-    background: transparent;
-    color: var(--muted);
-    padding: 10px 13px;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
+select{
+  background:transparent;
+  color:white;
+  border:0;
+  outline:0;
+  padding:8px;
 }
 
-.option:hover {
-    color: white;
-    background: var(--panel2);
+select option{
+  background:#222;
 }
 
-.option.active {
-    color: var(--accent);
-    background: #2c2a20;
+.hidden{display:none!important}
+
+.test-area{
+  max-width:900px;
+  margin:auto;
 }
 
-select {
-    background: transparent;
-    color: var(--text);
-    border: none;
-    outline: none;
-    padding: 8px 10px;
-    cursor: pointer;
+.language{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:20px;
+  font-family:JetBrains Mono,monospace;
 }
 
-select option {
-    background: #20242a;
-    color: white;
+.live-stats{
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  flex-wrap:wrap;
+  margin-bottom:22px;
 }
 
-.test-area {
-    max-width: 950px;
-    margin: auto;
+.stat{text-align:center}
+
+.stat-label{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:5px;
 }
 
-.language {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 25px;
-    font-family: JetBrains Mono, monospace;
+.stat-value{
+  color:var(--accent);
+  font-size:23px;
+  font-family:JetBrains Mono,monospace;
 }
 
-.live-stats {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-bottom: 25px;
+/* Paragraph display */
+
+.typing-display{
+  height:175px;
+  overflow:hidden;
+  background:#151719;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:18px;
+  font-family:JetBrains Mono,monospace;
+  font-size:clamp(17px,3vw,24px);
+  line-height:1.8;
+  letter-spacing:.5px;
+  position:relative;
 }
 
-.stat {
-    text-align: center;
+/* Completed paragraph */
+
+.previous-paragraph{
+  color:#41474e;
+  font-size:14px;
+  line-height:1.6;
+  max-height:45px;
+  overflow:hidden;
+  margin-bottom:12px;
+  opacity:.5;
 }
 
-.stat-label {
-    color: var(--muted);
-    font-size: 12px;
-    margin-bottom: 5px;
+/* Current paragraph */
+
+.current-paragraph{
+  color:#59616a;
+  line-height:1.8;
+  word-break:break-word;
 }
 
-.stat-value {
-    font-family: JetBrains Mono, monospace;
-    font-size: 24px;
-    color: var(--accent);
+.char.correct{color:var(--green)}
+
+.char.incorrect{
+  color:var(--red);
+  background:rgba(240,113,120,.15);
 }
 
-/* FIXED TYPING DISPLAY */
-
-.typing-display {
-    height: 175px;
-    max-height: 175px;
-    overflow: hidden;
-    background: #151719;
-    border: 1px solid #25292e;
-    border-radius: 12px;
-    padding: 18px;
-    font-family: JetBrains Mono, monospace;
-    font-size: clamp(18px, 3vw, 26px);
-    line-height: 1.8;
-    letter-spacing: 1px;
-    color: #555d65;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    margin-bottom: 20px;
-    position: relative;
+.char.cursor{
+  border-left:2px solid var(--accent);
+  animation:blink 1s infinite;
 }
 
-/* Only a small text window is shown */
-
-.char.correct {
-    color: var(--green);
+@keyframes blink{
+  50%{border-color:transparent}
 }
 
-.char.incorrect {
-    color: var(--red);
-    background: rgba(240,113,120,.12);
-    border-radius: 3px;
+/* Input */
+
+.typing-input{
+  width:100%;
+  height:75px;
+  min-height:75px;
+  max-height:75px;
+  resize:none;
+  overflow-y:auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:white;
+  padding:16px;
+  font-family:JetBrains Mono,monospace;
+  font-size:17px;
+  line-height:1.5;
+  outline:none;
+  text-transform:none;
+  autocapitalize:off;
+  autocorrect:off;
+  spellcheck:false;
 }
 
-.char.cursor {
-    border-left: 2px solid var(--accent);
-    animation: blink 1s infinite;
+.typing-input:focus{
+  border-color:#454c55;
 }
 
-@keyframes blink {
-    50% {
-        border-color: transparent;
-    }
+.typing-input::placeholder{
+  color:#505761;
 }
 
-/* INPUT NEVER GROWS */
-
-.typing-input {
-    width: 100%;
-    height: 75px;
-    min-height: 75px;
-    max-height: 75px;
-    resize: none;
-    overflow-y: auto;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    color: white;
-    border-radius: 12px;
-    padding: 18px;
-    font-size: 18px;
-    line-height: 1.5;
-    outline: none;
-    text-transform: none;
-    autocapitalize: off;
-    autocorrect: off;
-    spellcheck: false;
+.start-row{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:20px;
 }
 
-.typing-input:focus {
-    border-color: #454c55;
+button{cursor:pointer}
+
+.start-btn{
+  background:var(--accent);
+  color:#111;
+  border:0;
+  border-radius:9px;
+  padding:12px 24px;
+  font-weight:700;
 }
 
-.typing-input::placeholder {
-    color: #505761;
+.reset-btn{
+  background:var(--panel);
+  color:var(--muted);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:12px 20px;
 }
 
-.start-row {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 22px;
+.hint{
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:18px;
 }
 
-button {
-    cursor: pointer;
+.custom-panel{
+  display:none;
+  max-width:700px;
+  margin:15px auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:15px;
+  border-radius:12px;
 }
 
-.start-btn {
-    background: var(--accent);
-    color: #111;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 24px;
-    font-weight: 700;
-    font-size: 15px;
+.custom-panel textarea{
+  width:100%;
+  min-height:100px;
+  background:var(--bg);
+  color:white;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:12px;
 }
 
-.reset-btn {
-    background: var(--panel);
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 20px;
+.custom-panel button{
+  margin-top:10px;
+  background:var(--accent);
+  border:0;
+  border-radius:8px;
+  padding:10px 18px;
+  font-weight:700;
 }
 
-.hint {
-    text-align: center;
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 20px;
+/* Result */
+
+.result-screen{
+  display:none;
+  max-width:900px;
+  margin:auto;
 }
 
-.custom-panel {
-    display: none;
-    max-width: 700px;
-    margin: 20px auto;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 15px;
+.result-title{
+  text-align:center;
+  font-size:28px;
+  color:var(--accent);
 }
 
-.custom-panel textarea {
-    width: 100%;
-    min-height: 100px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px;
-    color: white;
-    outline: none;
+.result-subtitle{
+  text-align:center;
+  color:var(--muted);
+  margin:10px 0 25px;
 }
 
-.custom-panel button {
-    margin-top: 10px;
-    background: var(--accent);
-    color: #111;
-    border: none;
-    border-radius: 7px;
-    padding: 10px 18px;
-    font-weight: bold;
+.result-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
 }
 
-.result-screen {
-    display: none;
-    max-width: 950px;
-    margin: auto;
+.result-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:17px;
+  text-align:center;
 }
 
-.result-title {
-    text-align: center;
-    font-size: 28px;
-    color: var(--accent);
+.result-card .label{
+  color:var(--muted);
+  font-size:12px;
 }
 
-.result-subtitle {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 25px;
+.result-card .value{
+  font-family:JetBrains Mono,monospace;
+  font-size:25px;
+  color:var(--accent);
+  margin-top:10px;
 }
 
-.result-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+.graph-panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px;
+  margin-top:20px;
 }
 
-.result-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px;
-    text-align: center;
+.graph-title{
+  font-size:18px;
+  margin-bottom:8px;
 }
 
-.result-card .label {
-    color: var(--muted);
-    font-size: 13px;
+.graph-subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:20px;
 }
 
-.result-card .value {
-    font-size: 26px;
-    font-family: JetBrains Mono, monospace;
-    color: var(--accent);
-    margin-top: 10px;
+#speedGraph{
+  display:block;
+  width:100%;
+  height:280px;
 }
 
-.graph-panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    margin-top: 20px;
-    padding: 20px;
+.graph-summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:15px;
 }
 
-.graph-title {
-    font-size: 18px;
-    margin-bottom: 5px;
+.graph-summary div{
+  background:var(--panel2);
+  border-radius:9px;
+  padding:12px;
+  text-align:center;
 }
 
-.graph-subtitle {
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 20px;
+.graph-summary span{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
 }
 
-#speedGraph {
-    width: 100%;
-    height: 300px;
-    display: block;
+.graph-summary strong{
+  display:block;
+  color:var(--accent);
+  font-size:20px;
+  margin-top:6px;
 }
 
-.graph-table {
-    margin-top: 20px;
-    overflow-x: auto;
+.date-box{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:15px;
+  border-radius:10px;
+  margin-top:15px;
+  color:var(--muted);
 }
 
-.graph-table table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: JetBrains Mono, monospace;
-    font-size: 13px;
+.result-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:25px 0;
 }
 
-.graph-table th,
-.graph-table td {
-    padding: 12px;
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-}
+@media(max-width:700px){
 
-.graph-table th {
-    color: var(--accent);
-}
+  .app{padding:12px}
 
-.date-box {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 15px;
-    color: var(--muted);
-}
+  .settings{gap:6px}
 
-.result-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 25px 0;
-}
+  .setting-group{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
 
-.hidden {
-    display: none !important;
-}
+  .option{
+    padding:9px;
+    font-size:12px;
+  }
 
-@media(max-width:700px) {
+  .live-stats{gap:17px}
 
-    .app {
-        padding: 12px;
-    }
+  .stat-value{font-size:20px}
 
-    .settings {
-        margin-bottom: 25px;
-    }
+  .typing-display{
+    height:155px;
+    padding:12px;
+    font-size:18px;
+  }
 
-    .setting-group {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .typing-input{font-size:16px}
 
-    .option {
-        padding: 9px 10px;
-        font-size: 12px;
-    }
+  .result-grid{grid-template-columns:repeat(2,1fr)}
 
-    .live-stats {
-        gap: 17px;
-    }
+  #speedGraph{height:240px}
 
-    .stat-value {
-        font-size: 20px;
-    }
-
-    .typing-display {
-        height: 155px;
-        max-height: 155px;
-        padding: 12px;
-        font-size: 18px;
-        line-height: 1.8;
-    }
-
-    .typing-input {
-        height: 75px;
-        min-height: 75px;
-        max-height: 75px;
-        font-size: 16px;
-    }
-
-    .result-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    #speedGraph {
-        height: 250px;
-    }
+  .graph-summary{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -465,229 +439,198 @@ button {
 <div class="app">
 
 <header class="header">
-    <div class="logo">Typing <span>Master</span></div>
-
-    <div>
-        <button class="icon-btn" id="restartHeader">↻</button>
-    </div>
+  <div class="logo">Typing <span>Master</span></div>
+  <button class="reset-btn" id="headerReset">↻</button>
 </header>
 
 <!-- SETTINGS -->
 
 <div class="settings">
 
-    <div class="setting-group">
+  <div class="setting-group">
+    <button class="option" id="punctuationBtn">¶ punctuation</button>
+    <button class="option" id="numbersBtn"># numbers</button>
+  </div>
 
-        <button class="option" id="punctuationBtn">
-            ¶ punctuation
-        </button>
+  <div class="setting-group">
 
-        <button class="option" id="numbersBtn">
-            # numbers
-        </button>
+    <button class="option active" id="timeModeBtn">◷ time</button>
+    <button class="option" id="wordModeBtn">A words</button>
+    <button class="option" id="quoteModeBtn">❝ quote</button>
+    <button class="option" id="customModeBtn">⚙ custom</button>
 
-    </div>
+  </div>
 
-    <div class="setting-group">
+  <div class="setting-group" id="timeOptions">
+    <button class="option" data-time="15">15</button>
+    <button class="option active" data-time="30">30</button>
+    <button class="option" data-time="60">60</button>
+    <button class="option" data-time="120">120</button>
+  </div>
 
-        <button class="option active" id="timeModeBtn">
-            ◷ time
-        </button>
-
-        <button class="option" id="wordModeBtn">
-            A words
-        </button>
-
-        <button class="option" id="quoteModeBtn">
-            ❝ quote
-        </button>
-
-        <button class="option" id="customModeBtn">
-            ⚙ custom
-        </button>
-
-    </div>
-
-    <div class="setting-group" id="timeOptions">
-
-        <button class="option" data-time="15">15</button>
-        <button class="option active" data-time="30">30</button>
-        <button class="option" data-time="60">60</button>
-        <button class="option" data-time="120">120</button>
-
-    </div>
-
-    <div class="setting-group hidden" id="wordOptions">
-
-        <select id="wordCount">
-            <option value="25">25 words</option>
-            <option value="50" selected>50 words</option>
-            <option value="100">100 words</option>
-            <option value="200">200 words</option>
-            <option value="500">500 words</option>
-        </select>
-
-    </div>
+  <div class="setting-group hidden" id="wordOptions">
+    <select id="wordCount">
+      <option value="25">25 words</option>
+      <option value="50" selected>50 words</option>
+      <option value="100">100 words</option>
+      <option value="200">200 words</option>
+      <option value="500">500 words</option>
+    </select>
+  </div>
 
 </div>
 
 <!-- CUSTOM TEXT -->
 
 <div class="custom-panel" id="customPanel">
-
-    <p>Enter your own typing text:</p>
-
-    <textarea id="customText" placeholder="Write or paste text here..."></textarea>
-
-    <button id="applyCustom">Apply Custom Text</button>
-
+  <p>Enter your own typing text:</p>
+  <textarea id="customText" placeholder="Enter text here..."></textarea>
+  <button id="applyCustom">Apply Text</button>
 </div>
 
-<!-- TEST AREA -->
+<!-- TEST -->
 
 <div class="test-area" id="testArea">
 
-    <div class="language">
-        🌐 &nbsp; english
+  <div class="language">🌐 &nbsp; english</div>
+
+  <div class="live-stats">
+
+    <div class="stat">
+      <div class="stat-label" id="timerLabel">TIME</div>
+      <div class="stat-value" id="timer">30</div>
     </div>
 
-    <div class="live-stats">
-
-        <div class="stat">
-            <div class="stat-label">time</div>
-            <div class="stat-value" id="timer">30</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-label">wpm</div>
-            <div class="stat-value" id="wpm">0</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-label">accuracy</div>
-            <div class="stat-value" id="accuracy">100%</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-label">errors</div>
-            <div class="stat-value" id="errors">0</div>
-        </div>
-
+    <div class="stat">
+      <div class="stat-label">WPM</div>
+      <div class="stat-value" id="wpm">0</div>
     </div>
 
-    <div class="typing-display" id="typingDisplay"></div>
-
-    <textarea
-        id="typingInput"
-        class="typing-input"
-        placeholder="Click here and start typing..."
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-    ></textarea>
-
-    <div class="start-row">
-
-        <button class="start-btn" id="startBtn">
-            Start Test
-        </button>
-
-        <button class="reset-btn" id="resetBtn">
-            Reset
-        </button>
-
+    <div class="stat">
+      <div class="stat-label">ACCURACY</div>
+      <div class="stat-value" id="accuracy">100%</div>
     </div>
 
-    <div class="hint">
-        Start typing to begin · Esc to reset
+    <div class="stat">
+      <div class="stat-label">ERRORS</div>
+      <div class="stat-value" id="errors">0</div>
     </div>
+
+  </div>
+
+  <div class="typing-display" id="typingDisplay"></div>
+
+  <textarea
+    id="typingInput"
+    class="typing-input"
+    placeholder="Click here and start typing..."
+    autocomplete="off"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck="false"
+  ></textarea>
+
+  <div class="start-row">
+    <button class="start-btn" id="startBtn">Start Test</button>
+    <button class="reset-btn" id="resetBtn">Reset</button>
+  </div>
+
+  <div class="hint">
+    Start typing to begin · Esc to reset
+  </div>
 
 </div>
 
-<!-- RESULT -->
+<!-- RESULTS -->
 
 <div class="result-screen" id="resultScreen">
 
-    <div class="result-title">Test Completed</div>
+  <div class="result-title">Test Completed</div>
+  <div class="result-subtitle">Your final typing performance</div>
 
-    <div class="result-subtitle">
-        Your typing performance
+  <div class="result-grid">
+
+    <div class="result-card">
+      <div class="label">FINAL WPM</div>
+      <div class="value" id="rWpm">0</div>
     </div>
 
-    <div class="result-grid">
+    <div class="result-card">
+      <div class="label">START WPM</div>
+      <div class="value" id="rStart">0</div>
+    </div>
 
-        <div class="result-card">
-            <div class="label">Final WPM</div>
-            <div class="value" id="rWpm">0</div>
-        </div>
+    <div class="result-card">
+      <div class="label">WPM CHANGE</div>
+      <div class="value" id="rChange">0</div>
+    </div>
 
-        <div class="result-card">
-            <div class="label">Average WPM</div>
-            <div class="value" id="rAverage">0</div>
-        </div>
+    <div class="result-card">
+      <div class="label">BEST WPM</div>
+      <div class="value" id="rBest">0</div>
+    </div>
 
-        <div class="result-card">
-            <div class="label">Highest WPM</div>
-            <div class="value" id="rHighest">0</div>
-        </div>
+    <div class="result-card">
+      <div class="label">ACCURACY</div>
+      <div class="value" id="rAccuracy">0%</div>
+    </div>
 
-        <div class="result-card">
-            <div class="label">Lowest WPM</div>
-            <div class="value" id="rLowest">0</div>
-        </div>
+    <div class="result-card">
+      <div class="label">CORRECT</div>
+      <div class="value" id="rCorrect">0</div>
+    </div>
 
-        <div class="result-card">
-            <div class="label">Accuracy</div>
-            <div class="value" id="rAccuracy">0%</div>
-        </div>
+    <div class="result-card">
+      <div class="label">ERRORS</div>
+      <div class="value" id="rErrors">0</div>
+    </div>
 
-        <div class="result-card">
-            <div class="label">Correct Characters</div>
-            <div class="value" id="rCorrect">0</div>
-        </div>
+    <div class="result-card">
+      <div class="label">WORDS</div>
+      <div class="value" id="rWords">0</div>
+    </div>
 
-        <div class="result-card">
-            <div class="label">Errors</div>
-            <div class="value" id="rErrors">0</div>
-        </div>
+  </div>
 
-        <div class="result-card">
-            <div class="label">Words Typed</div>
-            <div class="value" id="rWords">0</div>
-        </div>
+  <div class="graph-panel">
+
+    <div class="graph-title">Typing Speed Graph</div>
+
+    <div class="graph-subtitle">
+      Beginning speed compared with your final typing speed
+    </div>
+
+    <canvas id="speedGraph"></canvas>
+
+    <div class="graph-summary">
+
+      <div>
+        <span>Starting Speed</span>
+        <strong id="graphStart">0 WPM</strong>
+      </div>
+
+      <div>
+        <span>Final Speed</span>
+        <strong id="graphFinal">0 WPM</strong>
+      </div>
+
+      <div>
+        <span>Total Change</span>
+        <strong id="graphChange">0 WPM</strong>
+      </div>
 
     </div>
 
-    <div class="graph-panel">
+  </div>
 
-        <div class="graph-title">Typing Speed Graph</div>
+  <div class="date-box">
+    📅 <span id="resultDate"></span>
+  </div>
 
-        <div class="graph-subtitle">
-            Your typing speed changes during the test
-        </div>
-
-        <canvas id="speedGraph"></canvas>
-
-        <div class="graph-table" id="graphTable"></div>
-
-    </div>
-
-    <div class="date-box">
-        📅 <span id="resultDate"></span>
-    </div>
-
-    <div class="result-buttons">
-
-        <button class="start-btn" id="tryAgainBtn">
-            Try Again
-        </button>
-
-        <button class="reset-btn" id="homeBtn">
-            Home
-        </button>
-
-    </div>
+  <div class="result-buttons">
+    <button class="start-btn" id="tryAgainBtn">Try Again</button>
+    <button class="reset-btn" id="homeBtn">Home</button>
+  </div>
 
 </div>
 
@@ -700,39 +643,39 @@ button {
 // =============================
 
 const wordBank = [
-"the","and","you","that","have","for","with","this","from",
-"they","will","what","when","make","like","time","know","good",
-"people","work","learn","think","great","every","right","use",
-"never","about","give","some","more","only","well","life",
-"day","way","world","want","need","help","look","come","take",
-"keep","small","large","start","begin","important","practice",
-"typing","computer","keyboard","skill","speed","accuracy",
-"success","future","education","knowledge","learning","improve",
-"better","strong","believe","yourself","effort","focus",
-"change","growth","develop","create","build","manage","system",
-"business","finance","account","number","money","record",
-"office","career","professional","student","teacher","writing",
-"reading","simple","clear","correct","quick","slow","result",
-"daily","regular","consistent","habit","goal","progress",
-"challenge","experience","confidence","technology","digital",
-"information","communication","personal","quality","complete",
-"solution","problem","answer","question","understand","explain",
-"example","reason","different","similar","continue","finish",
-"today","tomorrow","website","application","program","document",
-"data","excel","formula","table","report","accountant",
-"financial","statement","balance","invoice","payment",
-"customer","company","employee","manager","planning",
+"knowledge","progress","money","project","family","quick",
+"from","understand","yourself","regular","know","keep",
+"customer","decision","only","start","direction","personal",
+"begin","sentence","ability","improvement","training",
+"exercise","excellent","language","community","university",
+"productive","statement","attention","character","payment",
+"well","digital","information","technology","computer",
+"keyboard","practice","accuracy","speed","typing","master",
+"learning","future","success","confidence","development",
+"education","business","finance","account","number","office",
+"career","professional","student","teacher","writing","reading",
+"simple","clear","correct","quick","slow","result","daily",
+"regular","consistent","habit","goal","progress","challenge",
+"experience","focus","change","growth","create","build",
+"manage","system","record","report","formula","table",
+"excel","data","financial","statement","balance","invoice",
+"payment","company","employee","manager","planning",
 "organizing","decision","strategy","project","task",
 "efficient","productive","accurate","careful","responsible",
 "creative","successful","positive","motivated","patient",
-"honest","respect","support","community","family","friend",
-"school","college","university","opportunity","achievement",
-"improvement","performance","excellent","standard","value",
+"honest","respect","support","community","opportunity",
+"achievement","improvement","performance","standard","value",
 "purpose","direction","design","modern","process","necessary",
-"useful","helpful","powerful","effective","training","exercise",
-"activity","ability","method","technique","letter","character",
-"sentence","paragraph","language","english","word","space",
-"capital","small","punctuation","symbol","text"
+"useful","helpful","powerful","effective","training","activity",
+"ability","method","technique","letter","character","sentence",
+"paragraph","language","english","word","space","capital",
+"small","punctuation","symbol","text","work","today",
+"tomorrow","important","different","similar","continue",
+"finish","world","people","time","make","like","want",
+"need","help","look","come","take","keep","small","large",
+"start","begin","every","right","never","about","give",
+"some","more","only","well","life","day","way","think",
+"believe","yourself","effort","strong","better","learn"
 ];
 
 const quotes = [
@@ -751,127 +694,216 @@ const quotes = [
 let mode = "time";
 let testDuration = 30;
 let wordLimit = 50;
-
 let punctuation = false;
 let numbers = false;
 let customText = "";
 
+let paragraphs = [];
+let paragraphIndex = 0;
 let activeText = "";
 let typed = "";
 
 let started = false;
 let finished = false;
-
 let startTime = 0;
 let timerInterval = null;
 
-let graphData = [];
-let lastGraphTime = 0;
+let totalCorrect = 0;
+let totalErrors = 0;
+let totalTyped = 0;
+let totalWords = 0;
 
-let previousWpm = 0;
-let highestWpm = 0;
-let lowestWpm = Infinity;
+let firstWpm = 0;
+let finalWpm = 0;
+let bestWpm = 0;
+
+let firstCheckpointSet = false;
 
 const input = document.getElementById("typingInput");
 const display = document.getElementById("typingDisplay");
 
 // =============================
-// GENERATE TEXT
+// RANDOM WORDS
 // =============================
 
-function randomWord() {
+function shuffle(array){
 
-    let word = wordBank[
-        Math.floor(Math.random() * wordBank.length)
+  let a = [...array];
+
+  for(let i=a.length-1;i>0;i--){
+
+    const j=Math.floor(Math.random()*(i+1));
+
+    [a[i],a[j]]=[a[j],a[i]];
+
+  }
+
+  return a;
+
+}
+
+function makeParagraph(count=30){
+
+  let words=shuffle(wordBank).slice(0,count);
+
+  if(numbers){
+
+    words=words.map((word,index)=>{
+
+      if(index%8===0){
+        return String(Math.floor(Math.random()*999));
+      }
+
+      return word;
+
+    });
+
+  }
+
+  if(punctuation){
+
+    words=words.map((word,index)=>{
+
+      if(index%7===6){
+        return word+".";
+      }
+
+      if(index%11===10){
+        return word+",";
+      }
+
+      return word;
+
+    });
+
+  }
+
+  return words.join(" ");
+
+}
+
+// =============================
+// CREATE PARAGRAPHS
+// =============================
+
+function makeParagraphs(){
+
+  paragraphs=[];
+
+  if(mode==="quote"){
+
+    paragraphs=[
+      quotes[Math.floor(Math.random()*quotes.length)]
     ];
 
-    if (numbers && Math.random() < 0.1) {
-        word = String(Math.floor(Math.random() * 1000));
+    return;
+
+  }
+
+  if(mode==="custom"){
+
+    const text=customText.trim();
+
+    if(text){
+
+      paragraphs=text
+        .split(/\n+/)
+        .map(p=>p.trim())
+        .filter(Boolean);
+
+    }else{
+
+      paragraphs=[makeParagraph(30)];
+
     }
 
-    if (punctuation && Math.random() < 0.15) {
-        word += [".", ",", "?", "!"][Math.floor(Math.random() * 4)];
+    return;
+
+  }
+
+  if(mode==="words"){
+
+    let remaining=wordLimit;
+
+    while(remaining>0){
+
+      const count=Math.min(30,remaining);
+
+      paragraphs.push(makeParagraph(count));
+
+      remaining-=count;
+
     }
 
-    return word;
+    return;
 
-}
+  }
 
-function generateText(count = 500) {
+  // Time mode: continuously generated paragraphs
 
-    let arr = [];
+  for(let i=0;i<20;i++){
 
-    for (let i = 0; i < count; i++) {
-        arr.push(randomWord());
-    }
+    paragraphs.push(makeParagraph(30));
 
-    return arr.join(" ");
+  }
 
-}
-
-function getText() {
-
-    if (mode === "quote") {
-        return quotes[Math.floor(Math.random() * quotes.length)];
-    }
-
-    if (mode === "custom" && customText.trim() !== "") {
-        return customText.trim();
-    }
-
-    return generateText(500);
 }
 
 // =============================
-// FIXED DISPLAY WINDOW
+// CURRENT PARAGRAPH DISPLAY
 // =============================
 
-function renderText() {
+function renderText(){
 
-    display.innerHTML = "";
+  display.innerHTML="";
 
-    // केवल typed cursor के आसपास टेक्स्ट दिखाएँ
-    // पूरा बहुत बड़ा टेक्स्ट स्क्रीन पर नहीं आएगा
+  // Previous paragraph is shown faintly at top
 
-    const windowStart = Math.max(0, typed.length - 45);
+  if(paragraphIndex>0){
 
-    const windowEnd = Math.min(
-        activeText.length,
-        typed.length + 180
-    );
+    const previous=document.createElement("div");
 
-    const visibleText = activeText.slice(
-        windowStart,
-        windowEnd
-    );
+    previous.className="previous-paragraph";
 
-    for (let i = 0; i < visibleText.length; i++) {
+    previous.textContent=paragraphs[paragraphIndex-1];
 
-        const realIndex = windowStart + i;
+    display.appendChild(previous);
 
-        const span = document.createElement("span");
+  }
 
-        span.className = "char";
+  const current=document.createElement("div");
 
-        span.textContent = visibleText[i];
+  current.className="current-paragraph";
 
-        if (realIndex < typed.length) {
+  const visibleText=activeText;
 
-            if (typed[realIndex] === activeText[realIndex]) {
-                span.classList.add("correct");
-            } else {
-                span.classList.add("incorrect");
-            }
+  for(let i=0;i<visibleText.length;i++){
 
-        }
+    const span=document.createElement("span");
 
-        if (realIndex === typed.length) {
-            span.classList.add("cursor");
-        }
+    span.className="char";
 
-        display.appendChild(span);
+    span.textContent=visibleText[i];
+
+    if(i<typed.length){
+
+      if(typed[i]===activeText[i]){
+        span.classList.add("correct");
+      }else{
+        span.classList.add("incorrect");
+      }
 
     }
+
+    if(i===typed.length){
+      span.classList.add("cursor");
+    }
+
+    current.appendChild(span);
+
+  }
+
+  display.appendChild(current);
 
 }
 
@@ -879,98 +911,98 @@ function renderText() {
 // SETTINGS
 // =============================
 
-function setMode(newMode) {
+function setMode(newMode){
 
-    mode = newMode;
+  mode=newMode;
 
-    document.getElementById("timeModeBtn")
-        .classList.toggle("active", mode === "time");
+  document.getElementById("timeModeBtn")
+    .classList.toggle("active",mode==="time");
 
-    document.getElementById("wordModeBtn")
-        .classList.toggle("active", mode === "words");
+  document.getElementById("wordModeBtn")
+    .classList.toggle("active",mode==="words");
 
-    document.getElementById("quoteModeBtn")
-        .classList.toggle("active", mode === "quote");
+  document.getElementById("quoteModeBtn")
+    .classList.toggle("active",mode==="quote");
 
-    document.getElementById("customModeBtn")
-        .classList.toggle("active", mode === "custom");
+  document.getElementById("customModeBtn")
+    .classList.toggle("active",mode==="custom");
 
-    document.getElementById("timeOptions")
-        .classList.toggle("hidden", mode !== "time");
+  document.getElementById("timeOptions")
+    .classList.toggle("hidden",mode!=="time");
 
-    document.getElementById("wordOptions")
-        .classList.toggle("hidden", mode !== "words");
+  document.getElementById("wordOptions")
+    .classList.toggle("hidden",mode!=="words");
 
-    document.getElementById("customPanel")
-        .style.display = mode === "custom" ? "block" : "none";
+  document.getElementById("customPanel").style.display=
+    mode==="custom"?"block":"none";
 
-    resetTest();
+  resetTest();
 
 }
 
-document.getElementById("timeModeBtn").onclick =
-    () => setMode("time");
+document.getElementById("timeModeBtn").onclick=
+  ()=>setMode("time");
 
-document.getElementById("wordModeBtn").onclick =
-    () => setMode("words");
+document.getElementById("wordModeBtn").onclick=
+  ()=>setMode("words");
 
-document.getElementById("quoteModeBtn").onclick =
-    () => setMode("quote");
+document.getElementById("quoteModeBtn").onclick=
+  ()=>setMode("quote");
 
-document.getElementById("customModeBtn").onclick =
-    () => setMode("custom");
+document.getElementById("customModeBtn").onclick=
+  ()=>setMode("custom");
 
-document.querySelectorAll("[data-time]").forEach(button => {
+document.querySelectorAll("[data-time]").forEach(button=>{
 
-    button.onclick = () => {
+  button.onclick=()=>{
 
-        testDuration = Number(button.dataset.time);
+    testDuration=Number(button.dataset.time);
 
-        document.querySelectorAll("[data-time]").forEach(b =>
-            b.classList.remove("active")
-        );
+    document.querySelectorAll("[data-time]").forEach(b=>
+      b.classList.remove("active")
+    );
 
-        button.classList.add("active");
+    button.classList.add("active");
 
-        resetTest();
+    resetTest();
 
-    };
+  };
 
 });
 
-document.getElementById("wordCount").onchange = function() {
+document.getElementById("wordCount").onchange=function(){
 
-    wordLimit = Number(this.value);
+  wordLimit=Number(this.value);
 
-    resetTest();
-
-};
-
-document.getElementById("punctuationBtn").onclick = function() {
-
-    punctuation = !punctuation;
-
-    this.classList.toggle("active", punctuation);
-
-    resetTest();
+  resetTest();
 
 };
 
-document.getElementById("numbersBtn").onclick = function() {
+document.getElementById("punctuationBtn").onclick=function(){
 
-    numbers = !numbers;
+  punctuation=!punctuation;
 
-    this.classList.toggle("active", numbers);
+  this.classList.toggle("active",punctuation);
 
-    resetTest();
+  resetTest();
 
 };
 
-document.getElementById("applyCustom").onclick = function() {
+document.getElementById("numbersBtn").onclick=function(){
 
-    customText = document.getElementById("customText").value.trim();
+  numbers=!numbers;
 
-    resetTest();
+  this.classList.toggle("active",numbers);
+
+  resetTest();
+
+};
+
+document.getElementById("applyCustom").onclick=function(){
+
+  customText=document.getElementById("customText").value.trim();
+
+  resetTest();
 
 };
 
@@ -978,36 +1010,49 @@ document.getElementById("applyCustom").onclick = function() {
 // RESET
 // =============================
 
-function resetTest() {
+function resetTest(){
 
-    clearInterval(timerInterval);
+  clearInterval(timerInterval);
 
-    started = false;
-    finished = false;
-    typed = "";
+  started=false;
+  finished=false;
 
-    input.value = "";
-    input.disabled = false;
+  typed="";
+  paragraphIndex=0;
 
-    activeText = getText();
+  totalCorrect=0;
+  totalErrors=0;
+  totalTyped=0;
+  totalWords=0;
 
-    graphData = [];
-    lastGraphTime = 0;
-    previousWpm = 0;
-    highestWpm = 0;
-    lowestWpm = Infinity;
+  firstWpm=0;
+  finalWpm=0;
+  bestWpm=0;
+  firstCheckpointSet=false;
 
-    document.getElementById("timer").textContent =
-        mode === "time" ? testDuration : wordLimit;
+  input.value="";
+  input.disabled=false;
 
-    document.getElementById("wpm").textContent = "0";
-    document.getElementById("accuracy").textContent = "100%";
-    document.getElementById("errors").textContent = "0";
+  makeParagraphs();
 
-    document.getElementById("testArea").style.display = "block";
-    document.getElementById("resultScreen").style.display = "none";
+  activeText=paragraphs[0]||makeParagraph(30);
 
-    renderText();
+  document.getElementById("timer").textContent=
+    mode==="time"?testDuration:
+    mode==="words"?wordLimit:"0";
+
+  document.getElementById("timerLabel").textContent=
+    mode==="time"?"TIME":
+    mode==="words"?"WORDS":"TIME";
+
+  document.getElementById("wpm").textContent="0";
+  document.getElementById("accuracy").textContent="100%";
+  document.getElementById("errors").textContent="0";
+
+  document.getElementById("testArea").style.display="block";
+  document.getElementById("resultScreen").style.display="none";
+
+  renderText();
 
 }
 
@@ -1015,21 +1060,15 @@ function resetTest() {
 // START
 // =============================
 
-function startTest() {
+function startTest(){
 
-    if (started || finished) return;
+  if(started||finished)return;
 
-    started = true;
+  started=true;
 
-    startTime = Date.now();
+  startTime=Date.now();
 
-    graphData = [];
-
-    lastGraphTime = 0;
-
-    previousWpm = 0;
-
-    timerInterval = setInterval(updateLive, 250);
+  timerInterval=setInterval(updateLive,250);
 
 }
 
@@ -1037,69 +1076,33 @@ function startTest() {
 // CALCULATIONS
 // =============================
 
-function elapsedSeconds() {
+function elapsedSeconds(){
 
-    if (!started) return 0;
+  if(!started)return 0;
 
-    return (Date.now() - startTime) / 1000;
-
-}
-
-function correctChars() {
-
-    let correct = 0;
-
-    for (let i = 0; i < typed.length; i++) {
-
-        if (typed[i] === activeText[i]) {
-            correct++;
-        }
-
-    }
-
-    return correct;
+  return (Date.now()-startTime)/1000;
 
 }
 
-function errorCount() {
+function getCurrentWpm(){
 
-    let errors = 0;
+  const elapsed=Math.max(elapsedSeconds(),1);
 
-    for (let i = 0; i < typed.length; i++) {
-
-        if (typed[i] !== activeText[i]) {
-            errors++;
-        }
-
-    }
-
-    return errors;
+  return Math.round((totalCorrect/5)/(elapsed/60));
 
 }
 
-function getWpm() {
+function getAccuracy(){
 
-    const elapsed = Math.max(elapsedSeconds(), 1);
+  if(totalTyped===0)return 100;
 
-    return Math.round(
-        (correctChars() / 5) / (elapsed / 60)
-    );
+  return Math.round((totalCorrect/totalTyped)*100);
 
 }
 
-function getAccuracy() {
+function getWords(){
 
-    if (typed.length === 0) return 100;
-
-    return Math.round(
-        (correctChars() / typed.length) * 100
-    );
-
-}
-
-function completedWords() {
-
-    return typed.trim().split(/\s+/).filter(Boolean).length;
+  return totalWords;
 
 }
 
@@ -1107,77 +1110,57 @@ function completedWords() {
 // LIVE UPDATE
 // =============================
 
-function updateLive() {
+function updateLive(){
 
-    if (!started || finished) return;
+  if(!started||finished)return;
 
-    const elapsed = elapsedSeconds();
+  const elapsed=elapsedSeconds();
 
-    const wpm = getWpm();
+  const wpm=getCurrentWpm();
 
-    document.getElementById("wpm").textContent = wpm;
+  document.getElementById("wpm").textContent=wpm;
 
-    document.getElementById("accuracy").textContent =
-        getAccuracy() + "%";
+  document.getElementById("accuracy").textContent=
+    getAccuracy()+"%";
 
-    document.getElementById("errors").textContent =
-        errorCount();
+  document.getElementById("errors").textContent=
+    totalErrors;
 
-    if (mode === "time") {
+  bestWpm=Math.max(bestWpm,wpm);
 
-        const remaining = Math.max(
-            0,
-            testDuration - Math.floor(elapsed)
-        );
+  if(mode==="time"){
 
-        document.getElementById("timer").textContent =
-            remaining;
+    const remaining=Math.max(
+      0,
+      testDuration-Math.floor(elapsed)
+    );
 
-        if (elapsed >= testDuration) {
-            finishTest();
-            return;
-        }
+    document.getElementById("timer").textContent=remaining;
 
-    } else if (mode === "words") {
+    if(elapsed>=testDuration){
 
-        document.getElementById("timer").textContent =
-            completedWords() + "/" + wordLimit;
+      finishTest();
 
-        if (completedWords() >= wordLimit) {
-            finishTest();
-            return;
-        }
-
-    } else {
-
-        document.getElementById("timer").textContent =
-            Math.floor(elapsed);
+      return;
 
     }
 
-    // हर सेकंड Graph Point
+  }
 
-    if (elapsed >= lastGraphTime + 1) {
+  if(mode==="words"){
 
-        const change = wpm - previousWpm;
+    document.getElementById("timer").textContent=
+      totalWords+"/"+wordLimit;
 
-        graphData.push({
-            time: Math.round(elapsed),
-            wpm: wpm,
-            change: change
-        });
+    if(totalWords>=wordLimit){
 
-        previousWpm = wpm;
+      finishTest();
 
-        lastGraphTime = elapsed;
-
-        highestWpm = Math.max(highestWpm, wpm);
-
-        if (wpm > 0) {
-            lowestWpm = Math.min(lowestWpm, wpm);
-        }
+      return;
 
     }
+
+  }
 
 }
 
@@ -1185,269 +1168,331 @@ function updateLive() {
 // INPUT
 // =============================
 
-input.addEventListener("input", function() {
+input.addEventListener("input",function(){
 
-    if (finished) return;
+  if(finished)return;
 
-    if (!started && input.value.length > 0) {
-        startTest();
+  if(!started&&input.value.length>0){
+    startTest();
+  }
+
+  typed=input.value;
+
+  // Calculate current paragraph performance
+
+  let paragraphCorrect=0;
+  let paragraphErrors=0;
+
+  for(let i=0;i<typed.length;i++){
+
+    if(typed[i]===activeText[i]){
+      paragraphCorrect++;
+    }else{
+      paragraphErrors++;
     }
 
-    typed = input.value;
+  }
 
-    renderText();
+  document.getElementById("wpm").textContent=
+    getCurrentWpm();
 
-    updateLive();
+  document.getElementById("accuracy").textContent=
+    getAccuracy()+"%";
 
-    // टेक्स्ट खत्म होने से पहले नया टेक्स्ट जोड़ें
+  document.getElementById("errors").textContent=
+    totalErrors+paragraphErrors;
 
-    if (typed.length >= activeText.length - 100) {
+  renderText();
 
-        activeText += " " + generateText(500);
+  // Paragraph complete
 
-    }
+  if(typed.length>=activeText.length){
+
+    completeParagraph();
+
+  }
 
 });
+
+// =============================
+// COMPLETE PARAGRAPH
+// =============================
+
+function completeParagraph(){
+
+  totalCorrect+=typed.length-paragraphErrors;
+
+  totalErrors+=paragraphErrors;
+
+  totalTyped+=typed.length;
+
+  totalWords+=activeText.split(/\s+/).filter(Boolean).length;
+
+  // First paragraph WPM becomes starting speed
+
+  const elapsed=Math.max(elapsedSeconds(),1);
+
+  const paragraphWpm=Math.round(
+    ((typed.length-paragraphErrors)/5)/(elapsed/60)
+  );
+
+  if(!firstCheckpointSet){
+
+    firstWpm=paragraphWpm;
+
+    firstCheckpointSet=true;
+
+  }
+
+  finalWpm=getCurrentWpm();
+
+  bestWpm=Math.max(bestWpm,finalWpm);
+
+  // Word mode completion
+
+  if(mode==="words"&&totalWords>=wordLimit){
+
+    finishTest();
+
+    return;
+
+  }
+
+  // Quote and custom completion
+
+  if((mode==="quote"||mode==="custom")&&
+     paragraphIndex>=paragraphs.length-1){
+
+    finishTest();
+
+    return;
+
+  }
+
+  // Move next paragraph to top
+
+  paragraphIndex++;
+
+  if(paragraphIndex>=paragraphs.length){
+
+    if(mode==="time"){
+
+      paragraphs.push(makeParagraph(30));
+
+    }else{
+
+      finishTest();
+
+      return;
+
+    }
+
+  }
+
+  activeText=paragraphs[paragraphIndex];
+
+  typed="";
+
+  input.value="";
+
+  renderText();
+
+  input.focus();
+
+}
 
 // =============================
 // FINISH
 // =============================
 
-function finishTest() {
+function finishTest(){
 
-    if (finished) return;
+  if(finished)return;
 
-    finished = true;
+  finished=true;
 
-    clearInterval(timerInterval);
+  clearInterval(timerInterval);
 
-    input.disabled = true;
+  input.disabled=true;
 
-    const elapsed = Math.max(elapsedSeconds(), 1);
+  const elapsed=Math.max(elapsedSeconds(),1);
 
-    const finalWpm = Math.round(
-        (correctChars() / 5) / (elapsed / 60)
-    );
+  finalWpm=Math.round(
+    (totalCorrect/5)/(elapsed/60)
+  );
 
-    const accuracy = getAccuracy();
+  if(firstWpm===0){
+    firstWpm=finalWpm;
+  }
 
-    const errors = errorCount();
+  const change=finalWpm-firstWpm;
 
-    const totalCorrect = correctChars();
+  bestWpm=Math.max(bestWpm,finalWpm);
 
-    const totalWords = completedWords();
+  document.getElementById("rWpm").textContent=finalWpm;
 
-    graphData.push({
-        time: Math.round(elapsed),
-        wpm: finalWpm,
-        change: finalWpm - previousWpm
-    });
+  document.getElementById("rStart").textContent=firstWpm;
 
-    highestWpm = Math.max(highestWpm, finalWpm);
+  document.getElementById("rChange").textContent=
+    (change>0?"+":"")+change;
 
-    if (finalWpm > 0) {
-        lowestWpm = Math.min(lowestWpm, finalWpm);
-    }
+  document.getElementById("rBest").textContent=bestWpm;
 
-    if (lowestWpm === Infinity) {
-        lowestWpm = 0;
-    }
+  document.getElementById("rAccuracy").textContent=
+    getAccuracy()+"%";
 
-    document.getElementById("rWpm").textContent = finalWpm;
-    document.getElementById("rAverage").textContent = finalWpm;
-    document.getElementById("rHighest").textContent = highestWpm;
-    document.getElementById("rLowest").textContent = lowestWpm;
-    document.getElementById("rAccuracy").textContent = accuracy + "%";
-    document.getElementById("rCorrect").textContent = totalCorrect;
-    document.getElementById("rErrors").textContent = errors;
-    document.getElementById("rWords").textContent = totalWords;
+  document.getElementById("rCorrect").textContent=
+    totalCorrect;
 
-    document.getElementById("resultDate").textContent =
-        new Date().toLocaleString();
+  document.getElementById("rErrors").textContent=
+    totalErrors;
 
-    document.getElementById("testArea").style.display = "none";
+  document.getElementById("rWords").textContent=
+    totalWords;
 
-    document.getElementById("resultScreen").style.display = "block";
+  document.getElementById("graphStart").textContent=
+    firstWpm+" WPM";
 
-    drawGraph();
+  document.getElementById("graphFinal").textContent=
+    finalWpm+" WPM";
+
+  document.getElementById("graphChange").textContent=
+    (change>0?"+":"")+change+" WPM";
+
+  document.getElementById("resultDate").textContent=
+    new Date().toLocaleString();
+
+  document.getElementById("testArea").style.display="none";
+
+  document.getElementById("resultScreen").style.display="block";
+
+  drawGraph(firstWpm,finalWpm);
 
 }
 
 // =============================
-// GRAPH
+// FINAL GRAPH ONLY
 // =============================
 
-function drawGraph() {
+function drawGraph(start,final){
 
-    const canvas = document.getElementById("speedGraph");
+  const canvas=document.getElementById("speedGraph");
 
-    const ctx = canvas.getContext("2d");
+  const ctx=canvas.getContext("2d");
 
-    const width = canvas.clientWidth;
+  const width=canvas.clientWidth;
 
-    const height = 300;
+  const height=280;
 
-    const dpr = window.devicePixelRatio || 1;
+  const dpr=window.devicePixelRatio||1;
 
-    canvas.width = width * dpr;
+  canvas.width=width*dpr;
 
-    canvas.height = height * dpr;
+  canvas.height=height*dpr;
 
-    ctx.scale(dpr, dpr);
+  ctx.scale(dpr,dpr);
 
-    const padding = 45;
+  const padding=45;
 
-    const graphWidth = width - padding * 2;
+  const graphWidth=width-padding*2;
 
-    const graphHeight = height - padding * 2;
+  const graphHeight=height-padding*2;
 
-    const maxWpm = Math.max(
-        20,
-        ...graphData.map(p => p.wpm)
-    );
+  const maxWpm=Math.max(start,final,20)+10;
 
-    const maxTime = Math.max(
-        5,
-        ...graphData.map(p => p.time)
-    );
+  ctx.clearRect(0,0,width,height);
 
-    ctx.clearRect(0, 0, width, height);
+  // Grid
 
-    // Grid
+  ctx.strokeStyle="#292e34";
 
-    ctx.strokeStyle = "#292e34";
+  for(let i=0;i<=5;i++){
 
-    for (let i = 0; i <= 5; i++) {
-
-        const y = padding + graphHeight * i / 5;
-
-        ctx.beginPath();
-
-        ctx.moveTo(padding, y);
-
-        ctx.lineTo(width - padding, y);
-
-        ctx.stroke();
-
-        const val = Math.round(
-            maxWpm - maxWpm * i / 5
-        );
-
-        ctx.fillStyle = "#737b86";
-
-        ctx.font = "12px JetBrains Mono";
-
-        ctx.fillText(val, 8, y + 4);
-
-    }
-
-    // Line
+    const y=padding+graphHeight*i/5;
 
     ctx.beginPath();
 
-    ctx.strokeStyle = "#f2c94c";
+    ctx.moveTo(padding,y);
 
-    ctx.lineWidth = 3;
-
-    graphData.forEach((p, i) => {
-
-        const x = padding +
-            (p.time / maxTime) * graphWidth;
-
-        const y = padding +
-            graphHeight -
-            (p.wpm / maxWpm) * graphHeight;
-
-        if (i === 0) {
-            ctx.moveTo(x, y);
-        } else {
-            ctx.lineTo(x, y);
-        }
-
-    });
+    ctx.lineTo(width-padding,y);
 
     ctx.stroke();
 
-    // Points
+    const value=Math.round(maxWpm-maxWpm*i/5);
 
-    graphData.forEach(p => {
+    ctx.fillStyle="#737b86";
 
-        const x = padding +
-            (p.time / maxTime) * graphWidth;
+    ctx.font="12px JetBrains Mono";
 
-        const y = padding +
-            graphHeight -
-            (p.wpm / maxWpm) * graphHeight;
+    ctx.fillText(value,padding-30,y+4);
 
-        ctx.beginPath();
+  }
 
-        ctx.arc(x, y, 4, 0, Math.PI * 2);
+  const points=[
 
-        ctx.fillStyle = "#f2c94c";
+    {
+      x:padding+graphWidth*.2,
+      y:padding+graphHeight-(start/maxWpm)*graphHeight,
+      value:start,
+      label:"Starting"
+    },
 
-        ctx.fill();
+    {
+      x:padding+graphWidth*.8,
+      y:padding+graphHeight-(final/maxWpm)*graphHeight,
+      value:final,
+      label:"Final"
+    }
 
-        ctx.fillStyle = "#ffffff";
+  ];
 
-        ctx.font = "11px JetBrains Mono";
+  // Line
 
-        ctx.fillText(
-            p.wpm + " WPM",
-            x + 5,
-            y - 10
-        );
+  ctx.beginPath();
 
-    });
+  ctx.strokeStyle="#f2c94c";
 
-    ctx.fillStyle = "#737b86";
+  ctx.lineWidth=4;
 
-    ctx.font = "12px JetBrains Mono";
+  ctx.moveTo(points[0].x,points[0].y);
 
-    ctx.fillText("0 sec", padding, height - 10);
+  ctx.lineTo(points[1].x,points[1].y);
+
+  ctx.stroke();
+
+  // Points
+
+  points.forEach(point=>{
+
+    ctx.beginPath();
+
+    ctx.arc(point.x,point.y,7,0,Math.PI*2);
+
+    ctx.fillStyle="#f2c94c";
+
+    ctx.fill();
+
+    ctx.fillStyle="#ffffff";
+
+    ctx.font="bold 14px JetBrains Mono";
 
     ctx.fillText(
-        maxTime + " sec",
-        width - padding - 40,
-        height - 10
+      point.value+" WPM",
+      point.x-30,
+      point.y-15
     );
 
-    // TABLE
+    ctx.fillStyle="#737b86";
 
-    let html = `
-    <table>
-    <thead>
-        <tr>
-            <th>Time</th>
-            <th>Speed</th>
-            <th>Change</th>
-        </tr>
-    </thead>
-    <tbody>
-    `;
+    ctx.font="12px Inter";
 
-    graphData.forEach(p => {
+    ctx.fillText(
+      point.label,
+      point.x-25,
+      height-10
+    );
 
-        let color = "#d6d9df";
-
-        if (p.change > 0) color = "#65d69a";
-
-        if (p.change < 0) color = "#f07178";
-
-        html += `
-        <tr>
-            <td>${p.time}s</td>
-            <td>${p.wpm} WPM</td>
-            <td style="color:${color}">
-                ${p.change > 0 ? "+" : ""}${p.change}
-            </td>
-        </tr>
-        `;
-
-    });
-
-    html += "</tbody></table>";
-
-    document.getElementById("graphTable").innerHTML = html;
+  });
 
 }
 
@@ -1455,27 +1500,27 @@ function drawGraph() {
 // BUTTONS
 // =============================
 
-document.getElementById("startBtn").onclick = function() {
+document.getElementById("startBtn").onclick=function(){
 
-    input.focus();
+  input.focus();
 
-    startTest();
+  startTest();
 
 };
 
-document.getElementById("resetBtn").onclick = resetTest;
+document.getElementById("resetBtn").onclick=resetTest;
 
-document.getElementById("restartHeader").onclick = resetTest;
+document.getElementById("headerReset").onclick=resetTest;
 
-document.getElementById("tryAgainBtn").onclick = resetTest;
+document.getElementById("tryAgainBtn").onclick=resetTest;
 
-document.getElementById("homeBtn").onclick = resetTest;
+document.getElementById("homeBtn").onclick=resetTest;
 
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown",function(e){
 
-    if (e.key === "Escape") {
-        resetTest();
-    }
+  if(e.key==="Escape"){
+    resetTest();
+  }
 
 });
 
